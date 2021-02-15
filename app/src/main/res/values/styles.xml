@@ -1,0 +1,5 @@
+<resources>
+
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.DarkActionBar"/>
+
+</resources>
