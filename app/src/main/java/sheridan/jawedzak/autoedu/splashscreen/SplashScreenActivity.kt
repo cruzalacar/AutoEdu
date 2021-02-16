@@ -1,10 +1,11 @@
-package sheridan.jawedzak.autoedu
+package sheridan.jawedzak.autoedu.splashscreen
 
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import sheridan.jawedzak.autoedu.MainActivity
+import sheridan.jawedzak.autoedu.R
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
