@@ -18,16 +18,19 @@ class MainActivity : AppCompatActivity() {
         //  setSupportActionBar(findViewById(R.id.toolbar))
 
 
+        //history button intent
         val historyBtn = findViewById<Button>(R.id.button_history)
         historyBtn.setOnClickListener{
             startActivity(Intent(this@MainActivity, HistoryActivity::class.java))
         }
 
+        //chat button intent
         val chatBtn = findViewById<Button>(R.id.button_chat)
         chatBtn.setOnClickListener{
             startActivity(Intent(this@MainActivity, ChatActivity::class.java))
         }
 
+        //symbol button intent
         val symbolListBtn = findViewById<Button>(R.id.button_dashlights)
         symbolListBtn.setOnClickListener{
             startActivity(Intent(this@MainActivity, SymbolActivity::class.java))

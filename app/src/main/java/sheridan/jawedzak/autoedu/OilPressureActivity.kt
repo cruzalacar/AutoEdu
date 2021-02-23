@@ -13,6 +13,7 @@ class OilPressureActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dash_info)
 
+        //tutorial button intent
         val tutorialBtn = findViewById<Button>(R.id.button_tutorial)
         tutorialBtn.setOnClickListener{
             startActivity(Intent(this@OilPressureActivity, TutorialActivity::class.java))

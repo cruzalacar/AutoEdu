@@ -12,6 +12,7 @@ class SymbolActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.symbol_list)
 
+        //oil pressure button intent
         val oilPressureBtn = findViewById<Button>(R.id.oil_pressure)
         oilPressureBtn.setOnClickListener{
             startActivity(Intent(this@SymbolActivity, OilPressureActivity::class.java))

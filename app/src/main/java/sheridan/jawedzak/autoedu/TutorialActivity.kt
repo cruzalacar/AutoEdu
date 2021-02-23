@@ -12,6 +12,7 @@ class TutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dash_tutorial)
 
+        //mechanic button intent
         val mechanicBtn = findViewById<Button>(R.id.btn_mechanic)
         mechanicBtn.setOnClickListener{
             startActivity(Intent(this@TutorialActivity, MechanicActivity::class.java))
