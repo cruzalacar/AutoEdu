@@ -1,5 +1,6 @@
 package sheridan.jawedzak.autoedu.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,5 +30,16 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(R.id.action_DashboardFragment_to_DashLightSymbolsFragment)
         }
 
+        view.findViewById<Button>(R.id.button_history).setOnClickListener{
+            findNavController().navigate(R.id.action_DashboardFragment_to_DashLightSymbolsFragment)
+        }
+
     }
+
+//            val historyBtn = findViewById<Button>(R.id.button_history)
+//
+//        historyBtn.setOnClickListener{
+//            startActivity(Intent (this@MainActivity, MainActivity::class.java))
+//        }
+
 }
