@@ -108,20 +108,20 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="253dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:text="If the oil light comes on while you are driving, pull over as soon as it’s safe and turn the engine off. Next, you’ll need to check the oil level using the dipstick. You’ll also want to look for any signs of a leak. If the oil level is low and you don’t see any leaks, your solution might be as simple as adding some additional oil. If the oil level appears to be okay, there might be a problem with the oil pump."
         android:textColor="@color/black"
-        android:textSize="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="15dp" />
 
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_tutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tutorial and Steps"

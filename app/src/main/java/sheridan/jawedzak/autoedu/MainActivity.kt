@@ -1,23 +1,46 @@
 package sheridan.jawedzak.autoedu
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import sheridan.jawedzak.autoedu.splashscreen.SplashScreenActivity
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        //  setSupportActionBar(findViewById(R.id.toolbar))
 
-//        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
-//        }
+
+        //history button intent
+        val historyBtn = findViewById<Button>(R.id.button_history)
+        historyBtn.setOnClickListener{
+            startActivity(Intent(this@MainActivity, HistoryActivity::class.java))
+        }
+
+        //chat button intent
+        val chatBtn = findViewById<Button>(R.id.button_chat)
+        chatBtn.setOnClickListener{
+            startActivity(Intent(this@MainActivity, ChatActivity::class.java))
+        }
+
+        //symbol button intent
+        val symbolListBtn = findViewById<Button>(R.id.button_dashlights)
+        symbolListBtn.setOnClickListener{
+            startActivity(Intent(this@MainActivity, SymbolActivity::class.java))
+        }
+
+
+
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -36,5 +59,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-//testing
-//test
