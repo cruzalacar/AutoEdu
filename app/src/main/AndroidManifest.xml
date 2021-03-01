@@ -13,57 +13,33 @@
         <!--Splash screen -->
         <activity android:name=".splashscreen.SplashScreenActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+               <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <!--History Activity -->
         <activity android:name=".HistoryActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--Chat Activity -->
         <activity android:name=".ChatActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--Symbol Activity -->
         <activity android:name=".SymbolActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--Dash Info Activity (Oil Pressure Light Example) -->
         <activity android:name=".OilPressureActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--Dash Tutorial Activity (Tutorial Oil Pressure Light Example) -->
         <activity android:name=".TutorialActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--Dash Mechanic Activity (Mechanic Map Location) -->
         <activity android:name=".MechanicActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 
