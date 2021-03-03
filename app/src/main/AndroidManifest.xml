@@ -27,7 +27,7 @@
         </activity>
 
         <!--Symbol Activity -->
-        <activity android:name=".SymbolActivity">
+        <activity android:name=".dashLightSymbols.SymbolActivity">
         </activity>
 
         <!--Dash Info Activity (Oil Pressure Light Example) -->

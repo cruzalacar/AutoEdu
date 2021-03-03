@@ -1,4 +1,4 @@
-package sheridan.jawedzak.autoedu
+package sheridan.jawedzak.autoedu.dashLightSymbols
 
 class DatabaseModel {
     var name: String = ""

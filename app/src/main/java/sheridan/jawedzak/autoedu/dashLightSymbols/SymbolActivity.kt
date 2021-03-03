@@ -1,12 +1,11 @@
-package sheridan.jawedzak.autoedu
+package sheridan.jawedzak.autoedu.dashLightSymbols
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.FirebaseApp
-import com.google.firebase.FirebaseOptions
 import com.google.firebase.database.*
+import sheridan.jawedzak.autoedu.R
 
 
 class SymbolActivity : AppCompatActivity() {

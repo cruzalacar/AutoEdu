@@ -2,14 +2,11 @@ package sheridan.jawedzak.autoedu
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import com.google.firebase.FirebaseApp
-import sheridan.jawedzak.autoedu.splashscreen.SplashScreenActivity
+import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolActivity
 
 class MainActivity : AppCompatActivity() {
 

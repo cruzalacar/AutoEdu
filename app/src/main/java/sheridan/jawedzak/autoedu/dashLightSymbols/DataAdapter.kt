@@ -1,6 +1,5 @@
-package sheridan.jawedzak.autoedu
+package sheridan.jawedzak.autoedu.dashLightSymbols
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import sheridan.jawedzak.autoedu.R
 
 class DataAdapter(var list:ArrayList<DatabaseModel>): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
     class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
