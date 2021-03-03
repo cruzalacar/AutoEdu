@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".MainActivity">
+    tools:context=".CameraActivity">
 
     <!--ImageView in which image will be set
             android:src="@drawable/ic_android_black_24dp"-->
