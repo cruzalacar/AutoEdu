@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sheridan.jawedzak.autoedu">
 
+    <!--Adding Camera, Write External Storage Permission-->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -40,6 +45,10 @@
 
         <!--Dash Mechanic Activity (Mechanic Map Location) -->
         <activity android:name=".MechanicActivity">
+        </activity>
+
+        <!--Camera Activity -->
+        <activity android:name=".CameraActivity">
         </activity>
 
 
