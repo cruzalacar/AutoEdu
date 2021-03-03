@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import com.google.firebase.FirebaseApp
 import sheridan.jawedzak.autoedu.splashscreen.SplashScreenActivity
 
 class MainActivity : AppCompatActivity() {
