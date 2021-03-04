@@ -27,9 +27,9 @@
         <activity android:name=".HistoryActivity">
         </activity>
 
-        <!--Chat Activity -->
-        <activity android:name=".ChatActivity">
-        </activity>
+<!--        &lt;!&ndash;Chat Activity &ndash;&gt;-->
+<!--        <activity android:name=".ChatActivity">-->
+<!--        </activity>-->
 
         <!--Symbol Activity -->
         <activity android:name=".dashLightSymbols.SymbolActivity">
@@ -51,6 +51,9 @@
         <activity android:name=".CameraActivity">
         </activity>
 
+        <!--Bot Activity -->
+        <activity android:name=".chatBot.BotActivity">
+        </activity>
 
 
 
