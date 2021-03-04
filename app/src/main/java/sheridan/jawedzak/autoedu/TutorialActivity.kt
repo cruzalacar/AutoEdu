@@ -18,5 +18,11 @@ class TutorialActivity : AppCompatActivity() {
             startActivity(Intent(this@TutorialActivity, MechanicActivity::class.java))
         }
 
+        //back button
+        val backBtn = findViewById<Button>(R.id.button_back)
+        backBtn.setOnClickListener{
+            startActivity(Intent(this@TutorialActivity, OilPressureActivity::class.java))
+        }
+
     }
 }

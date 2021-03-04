@@ -2,13 +2,11 @@ package sheridan.jawedzak.autoedu
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import sheridan.jawedzak.autoedu.splashscreen.SplashScreenActivity
+import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         val symbolListBtn = findViewById<Button>(R.id.button_dashlights)
         symbolListBtn.setOnClickListener{
             startActivity(Intent(this@MainActivity, SymbolActivity::class.java))
+        }
+
+        //camera button intent
+        val cameraBtn = findViewById<Button>(R.id.button_camera)
+        cameraBtn.setOnClickListener{
+            startActivity(Intent(this@MainActivity, CameraActivity::class.java))
         }
 
 
