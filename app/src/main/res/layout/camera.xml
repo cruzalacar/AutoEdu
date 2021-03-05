@@ -8,13 +8,13 @@
     android:gravity="center_horizontal"
     tools:context=".CameraActivity">
 
-    <!--ImageView in which image will be set
-            android:src="@drawable/ic_android_black_24dp"-->
+    <!-- load image icon-->
     <ImageView
         android:id="@+id/image_view"
         android:scaleType="centerCrop"
         android:layout_width="400dp"
-        android:layout_height="400dp" />
+        android:layout_height="400dp"
+        android:src="@drawable/image"/>
 
     <!--Button to open camera-->
     <Button
@@ -22,5 +22,4 @@
         android:text="Capture Image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
 </LinearLayout>

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".chatBot.BotActivity">
 
-
     <LinearLayout
         android:id="@+id/ll_layout_bar"
         android:layout_width="match_parent"
@@ -15,6 +14,7 @@
         android:background="#E4E4E4"
         android:orientation="horizontal">
 
+        <!-- message keyboard bar-->
         <EditText
             android:id="@+id/et_message"
             android:inputType="textShortMessage"
@@ -28,6 +28,7 @@
             android:padding="10dp"
             android:singleLine="true" />
 
+        <!-- send button bar-->
         <Button
             android:id="@+id/btn_send"
             android:layout_width="match_parent"
@@ -38,9 +39,9 @@
             android:backgroundTint="#aeb9cc"
             android:text="Send"
             android:textColor="@android:color/white" />
-
     </LinearLayout>
 
+    <!-- recycler view for message boxes-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_messages"
         android:layout_width="match_parent"

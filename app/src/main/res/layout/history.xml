@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".HistoryActivity">
 
+    <!-- back button-->
     <Button
         android:id="@+id/button_back"
         android:layout_width="100dp"
@@ -20,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.205" />
 
+    <!-- history title-->
     <TextView
         android:id="@+id/tv_history"
         android:layout_width="wrap_content"
@@ -34,6 +36,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <!-- history image example-->
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="379dp"

@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- back button-->
     <Button
         android:id="@+id/button_back"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:text="back"
-        />
+        android:text="back"/>
 
+    <!-- symbol title-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -24,6 +25,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"/>
 
+    <!-- symbol image-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="70dp"
@@ -31,9 +33,9 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        />
+        android:layout_marginBottom="10dp"/>
 
+    <!-- symbol definition begins-->
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
@@ -117,9 +119,9 @@
         android:text="If the oil light comes on while you are driving, pull over as soon as it’s safe and turn the engine off. Next, you’ll need to check the oil level using the dipstick. You’ll also want to look for any signs of a leak. If the oil level is low and you don’t see any leaks, your solution might be as simple as adding some additional oil. If the oil level appears to be okay, there might be a problem with the oil pump."
         android:textColor="@color/black"
         android:textSize="15dp" />
+    <!--end of symbol definition -->
 
-
-
+    <!-- button for tutorial/steps-->
     <Button
         android:id="@+id/button_tutorial"
         android:layout_width="wrap_content"

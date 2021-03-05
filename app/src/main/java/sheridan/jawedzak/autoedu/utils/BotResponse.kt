@@ -6,44 +6,55 @@ import sheridan.jawedzak.autoedu.utils.Constants.OPEN_SEARCH
 
 object BotResponse {
 
+    //conversation functionality from user
     fun basicResponses(_message: String): String {
-
+        //bot will choose random lines to say from 0 to 1
         val random = (0..1).random()
+        //read message from user
         val message =_message.toLowerCase()
 
         return when {
-            //Hello
+            //when user types - hello
             message.contains("hello") -> {
+                //bot will choose to say 0 or 1
                 when (random) {
                     0 -> "Hello, how may I help you?"
                     1 -> "Hello, did you need any assistance with the application?"
-                    else -> "error" }
-            }
-
-            //How are you?
-            message.contains("how are you") -> {
-                when (random) {
-                    0 -> "I'm doing fine, thanks!"
-                    1 -> "I'm hungry..."
-                    else -> "error"
+                    //otherwise
+                    else -> "Sorry, I don't udnerstand"
                 }
             }
 
-            //Open Google
+            //when users says - how are you
+            message.contains("how are you") -> {
+                //bot will choose to say 0 or 1
+                when (random) {
+                    0 -> "I'm doing fine, thanks!"
+                    1 -> "I'm hungry..."
+                    //otherwise
+                    else -> "Sorry, I don't understand"
+                }
+            }
+
+            //when user types - google
             message.contains("open") && message.contains("google")-> {
+                //open google
                 OPEN_GOOGLE
             }
-            //Search on the internet
+            //when user types - search
             message.contains("search")-> {
+                //open google search
                 OPEN_SEARCH
             }
-            //Open Location
+            //when user types - location
             message.contains("location")-> {
+                //open location
                 OPEN_LOCATION
             }
 
-            //When the programme doesn't understand...
+            //when bot does not understand what the user says
             else -> {
+                //bot will choose to say 0 or 1
                 when (random) {
                     0 -> "Sorry, I don't understand please try again"
                     1 -> "Sorry, please try again as I didn't understand you"

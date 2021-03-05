@@ -7,11 +7,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".dashLightSymbols.SymbolActivity">
+
+    <!-- recycler view for loading list of symbols-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width= "match_parent"
         android:layout_margin="10sp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".splashscreen.SplashScreenActivity">
 
+    <!-- logo icon used for splashscreen-->
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/autoedu"
         android:layout_centerInParent="true"
         android:id="@+id/iv_note"/>
-
 </RelativeLayout>
