@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import sheridan.jawedzak.autoedu.chatBot.BotActivity
 import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolActivity
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         //chat button intent
         val chatBtn = findViewById<Button>(R.id.button_chat)
         chatBtn.setOnClickListener{
-            startActivity(Intent(this@MainActivity, ChatActivity::class.java))
+            startActivity(Intent(this@MainActivity, BotActivity::class.java))
         }
 
         //symbol button intent

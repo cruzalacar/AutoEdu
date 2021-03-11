@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,10 +24,6 @@
 
         <!--History Activity -->
         <activity android:name=".HistoryActivity">
-        </activity>
-
-        <!--Chat Activity -->
-        <activity android:name=".ChatActivity">
         </activity>
 
         <!--Symbol Activity -->
@@ -51,6 +46,9 @@
         <activity android:name=".CameraActivity">
         </activity>
 
+        <!--Bot Activity -->
+        <activity android:name=".chatBot.BotActivity">
+        </activity>
 
 
 

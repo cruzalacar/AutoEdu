@@ -3,6 +3,7 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- image for symbol -->
     <ImageView
         android:id="@+id/img"
         android:layout_width="104dp"
@@ -10,6 +11,7 @@
         android:src="@drawable/ic_baseline_arrow_forward_24"
         android:padding="10dp" />
 
+    <!-- name of symbol-->
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"

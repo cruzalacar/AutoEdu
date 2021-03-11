@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- back button-->
     <Button
         android:id="@+id/button_back"
         android:layout_width="100dp"
@@ -11,6 +12,7 @@
         android:layout_weight="1"
         android:text="back" />
 
+    <!-- symbol title-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -23,14 +25,14 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"/>
 
+    <!-- video tutorial-->
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:layout_weight="1" />
 
-
-
+    <!-- tutorial steps begins-->
     <TextView
         android:id="@+id/step1"
         android:layout_width="wrap_content"
@@ -127,6 +129,9 @@
         android:textColor="@color/black"
         android:textSize="15dp" />
 
+    <!--end of tutorial steps -->
+
+    <!-- towing company button-->
     <Button
         android:id="@+id/btn_tow"
         android:layout_width="wrap_content"
@@ -135,6 +140,7 @@
         android:text="Find Towing Company"
         android:layout_gravity="center"/>
 
+    <!-- mechanic/autoshop button-->
     <Button
         android:id="@+id/btn_mechanic"
         android:layout_width="wrap_content"
