@@ -1,18 +1,19 @@
 package sheridan.jawedzak.autoedu.dashLightSymbols
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import sheridan.jawedzak.autoedu.R
 
 
-class SymbolActivity : AppCompatActivity() {
+class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,10 @@ class SymbolActivity : AppCompatActivity() {
 //            startActivity(Intent(this@SymbolActivity, MainActivity::class.java))
 //        }
     }
+
+    override fun onSymbolItemClicked(position: Int) {
+        Toast.makeText(this, position.toString(), Toast.LENGTH_LONG).show()
+    }
         private fun getData(){
 
             reference.addValueEventListener(object : ValueEventListener {
@@ -49,7 +54,7 @@ class SymbolActivity : AppCompatActivity() {
                         list.add(model as DatabaseModel)
                     }
                     if (list.size > 0) {
-                        val adapter = DataAdapter(list)
+                        val adapter = DataAdapter(list, this@SymbolActivity)
                         var f = findViewById<RecyclerView>(R.id.recyclerview)
                         f.adapter = adapter
                     }
