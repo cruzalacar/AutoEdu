@@ -38,7 +38,9 @@ class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
     }
 
     override fun onSymbolItemClicked(position: Int) {
-        Toast.makeText(this, position.toString(), Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, position.toString(), Toast.LENGTH_LONG).show()
+        var intent = Intent(this, SymbolDetail::class.java)
+        startActivity(intent)
     }
         private fun getData(){
 
