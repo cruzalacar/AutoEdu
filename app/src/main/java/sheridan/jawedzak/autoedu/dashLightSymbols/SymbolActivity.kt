@@ -12,6 +12,8 @@ import sheridan.jawedzak.autoedu.R
 
 class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
 
+    var list = ArrayList<DatabaseModel>()
+
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
 
@@ -38,8 +40,10 @@ class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
     }
 
     override fun onSymbolItemClicked(position: Int) {
-        //Toast.makeText(this, position.toString(), Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
+
         var intent = Intent(this, SymbolDetail::class.java)
+        intent.putExtra("name", list[position].name)
         startActivity(intent)
     }
         private fun getData(){
@@ -50,7 +54,6 @@ class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    var list = ArrayList<DatabaseModel>()
                     for (data in p0.children) {
                         var model = data.getValue(DatabaseModel::class.java)
                         list.add(model as DatabaseModel)
