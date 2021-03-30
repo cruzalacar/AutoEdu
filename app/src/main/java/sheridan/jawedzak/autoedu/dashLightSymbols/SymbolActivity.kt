@@ -44,6 +44,10 @@ class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
 
         var intent = Intent(this, SymbolDetail::class.java)
         intent.putExtra("name", list[position].name)
+        intent.putExtra("trigger", list[position].trigger)
+        intent.putExtra("description", list[position].description)
+        intent.putExtra("solution", list[position].solution)
+        intent.putExtra("icon", list[position].icon)
         startActivity(intent)
     }
         private fun getData(){
