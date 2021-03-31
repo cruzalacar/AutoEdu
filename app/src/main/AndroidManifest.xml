@@ -50,10 +50,9 @@
         <activity android:name=".chatBot.BotActivity">
         </activity>
 
-
-
-
-
+        <!--Dash Symbol Detail -->
+        <activity android:name=".dashLightSymbols.SymbolDetail">
+        </activity>
 
         <activity
             android:name=".MainActivity">

@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import sheridan.jawedzak.autoedu.R
 
-class DataAdapter(var list:ArrayList<DatabaseModel>): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+class DataAdapter(var list:ArrayList<DatabaseModel>, private val onSymbolClickListener: OnSymbolClickListener): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+
     class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
         var name = itemView.findViewById<TextView>(R.id.name)
@@ -27,10 +28,13 @@ class DataAdapter(var list:ArrayList<DatabaseModel>): RecyclerView.Adapter<DataA
 
         Picasso.get().load(list[position].icon).into(holder.icon)
 
+        holder.itemView.setOnClickListener{
+            onSymbolClickListener.onSymbolItemClicked(position)
+        }
+
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
-
 }
