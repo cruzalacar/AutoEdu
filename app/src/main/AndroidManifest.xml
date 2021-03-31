@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sheridan.jawedzak.autoedu">
-
-    <!--Adding Camera, Write External Storage Permission-->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- Adding Camera, Write External Storage Permission -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,51 +12,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoEDU.NoActionBar">
-
-        <!--Splash screen -->
+        <activity
+            android:name=".navigation.DrawerMain"
+            android:label="@string/title_activity_drawer_main"
+            android:theme="@style/Theme.AutoEDU.NoActionBar.NoActionBar"></activity>
+        <!-- Splash screen -->
         <activity android:name=".splashscreen.SplashScreenActivity">
             <intent-filter>
-               <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- History Activity -->
+        <activity android:name=".HistoryActivity"></activity> <!-- Symbol Activity -->
+        <activity android:name=".dashLightSymbols.SymbolActivity"></activity> <!-- Dash Info Activity (Oil Pressure Light Example) -->
+        <activity android:name=".OilPressureActivity"></activity> <!-- Dash Tutorial Activity (Tutorial Oil Pressure Light Example) -->
+        <activity android:name=".TutorialActivity"></activity> <!-- Dash Mechanic Activity (Mechanic Map Location) -->
+        <activity android:name=".MechanicActivity"></activity> <!-- Camera Activity -->
+        <activity android:name=".CameraActivity"></activity> <!-- Bot Activity -->
+        <activity android:name=".chatBot.BotActivity"></activity> <!-- Dash Symbol Detail -->
+        <activity android:name=".dashLightSymbols.SymbolDetail"></activity>
+        <activity android:name=".MainActivity">
 
-        <!--History Activity -->
-        <activity android:name=".HistoryActivity">
-        </activity>
-
-        <!--Symbol Activity -->
-        <activity android:name=".dashLightSymbols.SymbolActivity">
-        </activity>
-
-        <!--Dash Info Activity (Oil Pressure Light Example) -->
-        <activity android:name=".OilPressureActivity">
-        </activity>
-
-        <!--Dash Tutorial Activity (Tutorial Oil Pressure Light Example) -->
-        <activity android:name=".TutorialActivity">
-        </activity>
-
-        <!--Dash Mechanic Activity (Mechanic Map Location) -->
-        <activity android:name=".MechanicActivity">
-        </activity>
-
-        <!--Camera Activity -->
-        <activity android:name=".CameraActivity">
-        </activity>
-
-        <!--Bot Activity -->
-        <activity android:name=".chatBot.BotActivity">
-        </activity>
-
-        <!--Dash Symbol Detail -->
-        <activity android:name=".dashLightSymbols.SymbolDetail">
-        </activity>
-
-        <activity
-            android:name=".MainActivity">
-<!--            android:label="@string/app_name"-->
-<!--            android:theme="@style/Theme.AutoEDU.NoActionBar">-->
+            <!-- android:label="@string/app_name" -->
+            <!-- android:theme="@style/Theme.AutoEDU.NoActionBar"> -->
 
         </activity>
     </application>

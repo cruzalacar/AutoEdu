@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Button
 import sheridan.jawedzak.autoedu.chatBot.BotActivity
 import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolActivity
+import sheridan.jawedzak.autoedu.navigation.DrawerMain
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //  setSupportActionBar(findViewById(R.id.toolbar))
+
+
 
 
         //history button intent
