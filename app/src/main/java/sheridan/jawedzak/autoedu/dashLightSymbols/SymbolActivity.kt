@@ -3,10 +3,13 @@ package sheridan.jawedzak.autoedu.dashLightSymbols
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_symbol_list.*
 import sheridan.jawedzak.autoedu.R
 
 
@@ -66,10 +69,42 @@ class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
                         val adapter = DataAdapter(list, this@SymbolActivity)
                         var f = findViewById<RecyclerView>(R.id.recyclerview)
                         f.adapter = adapter
-                    }
+                        val search = findViewById<SearchView>(R.id.searchView)
 
+                        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                            override fun onQueryTextSubmit(p0: String?): Boolean {
+                                search.clearFocus()
+                                for (x in list) {
+                                    if (x.name == p0) {
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "Found",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+//                                    else {
+//                                        Toast.makeText(
+//                                            applicationContext,
+//                                            list.get(0).toString(),
+//                                            Toast.LENGTH_SHORT
+//                                        ).show()
+//                                    }
+                                }
+                                return false
+                            }
+
+                            override fun onQueryTextChange(p0: String?): Boolean {
+//                                Toast.makeText(
+//                                    applicationContext,
+//                                    "QUERY",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+
+                                return false
+                            }
+                        })
+                    }
                 }
             })
         }
-
 }
