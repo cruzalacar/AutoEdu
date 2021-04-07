@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.fragment_history.*
 import sheridan.jawedzak.autoedu.R
 import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
@@ -54,8 +54,8 @@ class HistoryFragment : Fragment() {
                 }
                 if (list.size > 0) {
                     adapter = DataAdapter(list)
-                    recyclerview.adapter = adapter
-                    recyclerview.layoutManager = LinearLayoutManager(activity)
+                    history_recyclerview.adapter = adapter
+                    history_recyclerview.layoutManager = LinearLayoutManager(activity)
                 }
 
             }
