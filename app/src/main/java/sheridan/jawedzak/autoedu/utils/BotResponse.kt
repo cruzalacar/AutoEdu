@@ -21,18 +21,47 @@ object BotResponse {
                     0 -> "Hello, how may I help you?"
                     1 -> "Hello, did you need any assistance with the application?"
                     //otherwise
-                    else -> "Sorry, I don't udnerstand"
+                    else -> "Sorry, I don't understand can you try rephrasing."
                 }
             }
 
-            //when users says - how are you
+            message.contains("hi") -> {
+                //bot will choose to say 0 or 1
+                when (random) {
+                    0 -> "Hello, how may I help you?"
+                    1 -> "Hello, did you need any assistance with the application?"
+                    //otherwise
+                    else -> "Sorry, I don't understand can you try rephrasing."
+                }
+            }
+
+            message.contains("hey") -> {
+                //bot will choose to say 0 or 1
+                when (random) {
+                    0 -> "Hello, how may I help you?"
+                    1 -> "Hello, did you need any assistance with the application?"
+                    //otherwise
+                    else -> "Sorry, I don't understand can you try rephrasing."
+                }
+            }
+
+            message.contains("help") -> {
+                //bot will choose to say 0 or 1
+                when (random) {
+                    0 -> "Hello, how may I help you?"
+                    1 -> "Hello, did you need any assistance with the application?"
+                    //otherwise
+                    else -> "Sorry, I don't understand can you try rephrasing."
+                }
+            }
+
             message.contains("how are you") -> {
                 //bot will choose to say 0 or 1
                 when (random) {
                     0 -> "I'm doing fine, thanks!"
                     1 -> "I'm hungry..."
                     //otherwise
-                    else -> "Sorry, I don't understand"
+                    else -> "Sorry, I don't understand can you try rephrasing."
                 }
             }
 
