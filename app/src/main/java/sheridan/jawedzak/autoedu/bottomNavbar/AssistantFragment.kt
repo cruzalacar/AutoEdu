@@ -13,9 +13,13 @@ import kotlinx.coroutines.*
 import sheridan.jawedzak.autoedu.R
 import sheridan.jawedzak.autoedu.chatBot.Message
 import sheridan.jawedzak.autoedu.chatBot.MessagingAdapter
-import sheridan.jawedzak.autoedu.utils.BotResponse
 import sheridan.jawedzak.autoedu.utils.Constants
 import sheridan.jawedzak.autoedu.utils.Time
+import sheridan.jawedzak.autoedu.utils.Constants.RECEIVE_ID
+import sheridan.jawedzak.autoedu.utils.Constants.SEND_ID
+import sheridan.jawedzak.autoedu.utils.BotResponse
+import sheridan.jawedzak.autoedu.utils.Constants.OPEN_GOOGLE
+import sheridan.jawedzak.autoedu.utils.Constants.OPEN_SEARCH
 
 
 class AssistantFragment : Fragment() {
@@ -50,7 +54,7 @@ class AssistantFragment : Fragment() {
         //recycler view used when add/input messages
         adapter = MessagingAdapter()
         rv_messages.adapter = adapter
-        //rv_messages.layoutManager = LinearLayoutManager()
+        rv_messages.layoutManager = LinearLayoutManager(activity)
 
     }
 

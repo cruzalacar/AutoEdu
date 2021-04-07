@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import sheridan.jawedzak.autoedu.R
+import sheridan.jawedzak.autoedu.chatBot.MessagingAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
 import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
@@ -17,16 +18,11 @@ import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 
 class SearchFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
-    }
-
     var list = ArrayList<DatabaseModel>()
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +30,18 @@ class SearchFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("Symbols")
 
-        getData()
+
+        //getData()
 
     }
 
-    fun onSymbolItemClicked(position: Int) {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    /*override fun onSymbolItemClicked(position: Int) {
         //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
 
         var intent = Intent(this, SymbolDetail::class.java)
@@ -48,9 +51,9 @@ class SearchFragment : Fragment() {
         intent.putExtra("solution", list[position].solution)
         intent.putExtra("icon", list[position].icon)
         startActivity(intent)
-    }
+    }*/
 
-    private fun getData(){
+    /*private fun getData(){
 
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -63,12 +66,12 @@ class SearchFragment : Fragment() {
                     list.add(model as DatabaseModel)
                 }
                 if (list.size > 0) {
-                    val adapter = DataAdapter(list, this@SearchFragment)
+                    val adapter = DataAdapter(list, this@SymbolActivity)
                     var f = findViewById<RecyclerView>(R.id.recyclerview)
                     f.adapter = adapter
                 }
 
             }
         })
-    }
+    }*/
 }
