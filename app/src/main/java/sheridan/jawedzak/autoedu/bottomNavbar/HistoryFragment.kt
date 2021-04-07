@@ -1,5 +1,6 @@
 package sheridan.jawedzak.autoedu.bottomNavbar
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,9 +13,11 @@ import kotlinx.android.synthetic.main.fragment_history.*
 import sheridan.jawedzak.autoedu.R
 import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
+import sheridan.jawedzak.autoedu.dashLightSymbols.OnSymbolClickListener
+import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : Fragment(), OnSymbolClickListener {
 
     var list = ArrayList<DatabaseModel>()
 
@@ -39,6 +42,17 @@ class HistoryFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
+    override fun onSymbolItemClicked(position: Int) {
+        //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
+
+        var intent = Intent(activity, SymbolDetail::class.java)
+        intent.putExtra("name", list[position].name)
+        intent.putExtra("trigger", list[position].trigger)
+        intent.putExtra("description", list[position].description)
+        intent.putExtra("solution", list[position].solution)
+        intent.putExtra("icon", list[position].icon)
+        startActivity(intent)
+    }
 
     private fun getData(){
 
@@ -53,7 +67,7 @@ class HistoryFragment : Fragment() {
                     list.add(model as DatabaseModel)
                 }
                 if (list.size > 0) {
-                    adapter = DataAdapter(list)
+                    adapter = DataAdapter(list, this@HistoryFragment)
                     history_recyclerview.adapter = adapter
                     history_recyclerview.layoutManager = LinearLayoutManager(activity)
                 }

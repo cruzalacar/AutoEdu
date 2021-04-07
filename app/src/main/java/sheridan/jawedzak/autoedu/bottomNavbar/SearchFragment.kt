@@ -15,10 +15,11 @@ import sheridan.jawedzak.autoedu.R
 import sheridan.jawedzak.autoedu.chatBot.MessagingAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
+import sheridan.jawedzak.autoedu.dashLightSymbols.OnSymbolClickListener
 import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), OnSymbolClickListener {
 
     var list = ArrayList<DatabaseModel>()
 
@@ -43,6 +44,18 @@ class SearchFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
+    override fun onSymbolItemClicked(position: Int) {
+        //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
+
+        var intent = Intent(activity, SymbolDetail::class.java)
+        intent.putExtra("name", list[position].name)
+        intent.putExtra("trigger", list[position].trigger)
+        intent.putExtra("description", list[position].description)
+        intent.putExtra("solution", list[position].solution)
+        intent.putExtra("icon", list[position].icon)
+        startActivity(intent)
+    }
+
 
      private fun getData(){
 
@@ -57,9 +70,10 @@ class SearchFragment : Fragment() {
                     list.add(model as DatabaseModel)
                 }
                 if (list.size > 0) {
-                    adapter = DataAdapter(list)
+                    adapter = DataAdapter(list, this@SearchFragment)
                     recyclerview.adapter = adapter
                     recyclerview.layoutManager = LinearLayoutManager(activity)
+
                 }
 
             }

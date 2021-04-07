@@ -21,13 +21,13 @@ class SymbolDetail  : AppCompatActivity(){
         var solution = intent.getStringExtra("solution")
 
 
-        val lblName = findViewById<TextView>(R.id.name)
+        //val lblName = findViewById<TextView>(R.id.name)
         val lblDescription = findViewById<TextView>(R.id.description)
         val lblTrigger = findViewById<TextView>(R.id.trigger)
         val lblSolution = findViewById<TextView>(R.id.solution)
         val img = findViewById<ImageView>(R.id.img)
 
-        lblName.text = name
+        //lblName.text = name
         Picasso.get().load(icon).into(img)
         lblDescription.text = description
         lblTrigger.text = trigger
