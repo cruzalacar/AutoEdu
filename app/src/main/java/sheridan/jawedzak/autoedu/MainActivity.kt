@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.activity_main.*
+import sheridan.jawedzak.autoedu.bottomNavbar.*
 import sheridan.jawedzak.autoedu.chatBot.BotActivity
 import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolActivity
-import sheridan.jawedzak.autoedu.navigation.DrawerMain
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,52 +21,33 @@ class MainActivity : AppCompatActivity() {
         //  setSupportActionBar(findViewById(R.id.toolbar))
 
 
+        val homeFragment = HomeFragment()
+        val searchFragment = SearchFragment()
+        val assistantFragment = AssistantFragment()
+        val historyFragment = HistoryFragment()
+        val accountFragment = AccountFragment()
 
+        makeCurrentFragement(homeFragment)
 
-        //history button intent
-        val historyBtn = findViewById<Button>(R.id.button_history)
-        historyBtn.setOnClickListener{
-            startActivity(Intent(this@MainActivity, HistoryActivity::class.java))
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId){
+                R.id.ic_home -> makeCurrentFragement(homeFragment)
+                R.id.ic_search -> makeCurrentFragement(searchFragment)
+                R.id.ic_live_help -> makeCurrentFragement(assistantFragment)
+                R.id.ic_history -> makeCurrentFragement(historyFragment)
+                R.id.ic_account -> makeCurrentFragement(accountFragment)
+
+            }
+            true
         }
-
-        //chat button intent
-        val chatBtn = findViewById<Button>(R.id.button_chat)
-        chatBtn.setOnClickListener{
-            startActivity(Intent(this@MainActivity, BotActivity::class.java))
-        }
-
-        //symbol button intent
-        val symbolListBtn = findViewById<Button>(R.id.button_dashlights)
-        symbolListBtn.setOnClickListener{
-            startActivity(Intent(this@MainActivity, SymbolActivity::class.java))
-        }
-
-        //camera button intent
-        val cameraBtn = findViewById<Button>(R.id.button_camera)
-        cameraBtn.setOnClickListener{
-            startActivity(Intent(this@MainActivity, CameraActivity::class.java))
-        }
-
-
-
-
-
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+    private fun makeCurrentFragement(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fl_wrapper, fragment)
+            commit()
         }
-    }
+
+
 }

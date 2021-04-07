@@ -19,7 +19,7 @@ class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_symbol_list)
+        setContentView(R.layout.fragment_search)
 
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("Symbols")
