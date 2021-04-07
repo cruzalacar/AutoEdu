@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/img"
         android:layout_width="104dp"
-        android:layout_height="94dp"
+        android:layout_height="70dp"
         android:src="@drawable/ic_baseline_arrow_forward_24"
         android:layout_marginTop="15dp"
         android:background="@drawable/symbol_gradient"/>
@@ -16,7 +16,7 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="94dp"
+        android:layout_height="70dp"
         android:layout_marginTop="15dp"
         android:text="@string/app_name"
         android:textAlignment="center"

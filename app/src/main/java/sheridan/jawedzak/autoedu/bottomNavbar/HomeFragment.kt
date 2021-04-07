@@ -32,6 +32,8 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+
+
     //recycler view to display top 10 indicators
     private fun getCommonIndicators() {
 
