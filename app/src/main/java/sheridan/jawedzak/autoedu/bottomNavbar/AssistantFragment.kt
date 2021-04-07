@@ -32,6 +32,17 @@ class AssistantFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_assistant, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         //first line when user opens the chat
         customBotMessage("Hello, welcome to AutoEDU how may I help you today?")
 
@@ -55,13 +66,6 @@ class AssistantFragment : Fragment() {
         adapter = MessagingAdapter()
         rv_messages.adapter = adapter
         rv_messages.layoutManager = LinearLayoutManager(activity)
-
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_assistant, container, false)
     }
 
     override fun onStart() {
