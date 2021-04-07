@@ -29,10 +29,7 @@
 
     </Button>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <!-- recycler view for loading list of symbols-->
         <androidx.recyclerview.widget.RecyclerView
@@ -45,6 +42,6 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/rv_layout"/>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

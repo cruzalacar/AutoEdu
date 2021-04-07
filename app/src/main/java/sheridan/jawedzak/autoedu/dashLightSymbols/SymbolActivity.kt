@@ -3,14 +3,13 @@ package sheridan.jawedzak.autoedu.dashLightSymbols
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import sheridan.jawedzak.autoedu.R
 
 
-class SymbolActivity : AppCompatActivity() , OnSymbolClickListener{
+class SymbolActivity : AppCompatActivity() , OnSymbolClickListener {
 
     var list = ArrayList<DatabaseModel>()
 

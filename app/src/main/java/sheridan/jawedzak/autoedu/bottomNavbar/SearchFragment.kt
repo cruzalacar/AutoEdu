@@ -14,11 +14,6 @@ import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
 import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 
 class SearchFragment : Fragment() {
 
@@ -40,7 +35,6 @@ class SearchFragment : Fragment() {
         reference = database.getReference("Symbols")
 
         getData()
-
 
     }
 
