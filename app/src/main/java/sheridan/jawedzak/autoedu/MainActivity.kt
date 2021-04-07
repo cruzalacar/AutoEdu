@@ -1,16 +1,10 @@
 package sheridan.jawedzak.autoedu
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 import sheridan.jawedzak.autoedu.bottomNavbar.*
-import sheridan.jawedzak.autoedu.chatBot.BotActivity
-import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolActivity
 
 
 class MainActivity : AppCompatActivity() {

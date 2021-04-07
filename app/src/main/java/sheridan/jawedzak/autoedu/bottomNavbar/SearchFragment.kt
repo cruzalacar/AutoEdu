@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_search.*
 import sheridan.jawedzak.autoedu.R
 import sheridan.jawedzak.autoedu.chatBot.MessagingAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
@@ -22,7 +24,7 @@ class SearchFragment : Fragment() {
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
-
+    private lateinit var adapter: DataAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class SearchFragment : Fragment() {
         reference = database.getReference("Symbols")
 
 
-        //getData()
+        getData()
 
     }
 
@@ -41,19 +43,8 @@ class SearchFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
-    /*override fun onSymbolItemClicked(position: Int) {
-        //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
 
-        var intent = Intent(this, SymbolDetail::class.java)
-        intent.putExtra("name", list[position].name)
-        intent.putExtra("trigger", list[position].trigger)
-        intent.putExtra("description", list[position].description)
-        intent.putExtra("solution", list[position].solution)
-        intent.putExtra("icon", list[position].icon)
-        startActivity(intent)
-    }*/
-
-    /*private fun getData(){
+     private fun getData(){
 
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -66,12 +57,12 @@ class SearchFragment : Fragment() {
                     list.add(model as DatabaseModel)
                 }
                 if (list.size > 0) {
-                    val adapter = DataAdapter(list, this@SymbolActivity)
-                    var f = findViewById<RecyclerView>(R.id.recyclerview)
-                    f.adapter = adapter
+                    adapter = DataAdapter(list)
+                    recyclerview.adapter = adapter
+                    recyclerview.layoutManager = LinearLayoutManager(activity)
                 }
 
             }
         })
-    }*/
+    }
 }

@@ -62,9 +62,9 @@ class SymbolActivity : AppCompatActivity() , OnSymbolClickListener {
                         list.add(model as DatabaseModel)
                     }
                     if (list.size > 0) {
-                        val adapter = DataAdapter(list, this@SymbolActivity)
+                        //val adapter = DataAdapter(list, this@SymbolActivity)
                         var f = findViewById<RecyclerView>(R.id.recyclerview)
-                        f.adapter = adapter
+                        //f.adapter = adapter
                     }
 
                 }

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import sheridan.jawedzak.autoedu.R
 
-class DataAdapter(var list:ArrayList<DatabaseModel>, private val onSymbolClickListener: OnSymbolClickListener): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+class DataAdapter(var list:ArrayList<DatabaseModel>): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -28,9 +28,9 @@ class DataAdapter(var list:ArrayList<DatabaseModel>, private val onSymbolClickLi
 
         Picasso.get().load(list[position].icon).into(holder.icon)
 
-        holder.itemView.setOnClickListener{
-            onSymbolClickListener.onSymbolItemClicked(position)
-        }
+//        holder.itemView.setOnClickListener{
+//            onSymbolClickListener.onSymbolItemClicked(position)
+//        }
 
     }
 

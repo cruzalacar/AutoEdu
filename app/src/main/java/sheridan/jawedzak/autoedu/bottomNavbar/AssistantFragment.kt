@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_bot.*
+import kotlinx.android.synthetic.main.fragment_assistant.*
 import kotlinx.coroutines.*
 import sheridan.jawedzak.autoedu.R
 import sheridan.jawedzak.autoedu.chatBot.Message
