@@ -8,8 +8,19 @@
     tools:context=".bottomNavbar.SearchFragment">
 
 
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="Type a message..."
+        android:background="@drawable/round_button"
+        android:backgroundTint="#E8E9EB"
+        android:padding="10dp"
+        android:singleLine="true" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/search_bar"
         android:layout_width="350dp"
         android:layout_height="50dp"
@@ -20,8 +31,9 @@
         android:backgroundTint="#E8E9EB"
         android:padding="10dp"
         android:singleLine="true">
+        </EditText>-->
 
-    </EditText>
+
 
     <Button
         android:layout_width="100dp"

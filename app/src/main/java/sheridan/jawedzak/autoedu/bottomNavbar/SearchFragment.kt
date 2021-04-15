@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
@@ -74,6 +76,39 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
                     recyclerview.adapter = adapter
                     recyclerview.layoutManager = LinearLayoutManager(activity)
 
+
+                    search_bar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                        override fun onQueryTextSubmit(p0: String?): Boolean {
+                            search_bar.clearFocus()
+                            for (x in list) {
+                                if (x.name == p0) {
+                                    Toast.makeText(
+                                        activity,
+                                        "Found",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+//                                    else {
+//                                        Toast.makeText(
+//                                            applicationContext,
+//                                            list.get(0).toString(),
+//                                            Toast.LENGTH_SHORT
+//                                        ).show()
+//                                    }
+                            }
+                            return false
+                        }
+
+                        override fun onQueryTextChange(p0: String?): Boolean {
+//                                Toast.makeText(
+//                                    applicationContext,
+//                                    "QUERY",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+
+                            return false
+                        }
+                    })
                 }
 
             }
