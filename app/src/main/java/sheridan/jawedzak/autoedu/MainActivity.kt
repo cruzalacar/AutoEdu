@@ -1,18 +1,22 @@
 package sheridan.jawedzak.autoedu
 
 import android.os.Bundle
+import android.view.MenuItem
+import android.widget.Toolbar
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import sheridan.jawedzak.autoedu.bottomNavbar.*
 
 
 class MainActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //  setSupportActionBar(findViewById(R.id.toolbar))
 
 
         val homeFragment = HomeFragment()
@@ -42,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fl_wrapper, fragment)
             commit()
         }
+
 
 
 }

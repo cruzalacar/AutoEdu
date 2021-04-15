@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <!--<TextView
@@ -20,12 +20,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />-->
 
+
+
     <ImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:src="@drawable/ic_baseline_arrow_forward_24"
-        android:background="@drawable/symbol_gradient"/>
+        android:background="@drawable/symbol_gradient"
+        android:padding="10dp"/>
 
     <TextView
         android:id="@+id/description"
@@ -105,6 +108,8 @@
         android:text="Learn how to fix it!"
         android:backgroundTint="#4D9DE9"
         android:layout_gravity="center" />
+
+
 
 </LinearLayout>
 

@@ -14,6 +14,13 @@ class SymbolDetail  : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.symbol_detail)
 
+        //action bar
+        val actionbar = supportActionBar
+        actionbar!!.title = "Dashboard"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+
         var name = intent.getStringExtra("name")
         var icon = intent.getStringExtra("icon")
         var description = intent.getStringExtra("description")
@@ -34,5 +41,9 @@ class SymbolDetail  : AppCompatActivity(){
         lblSolution.text = solution
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
 }

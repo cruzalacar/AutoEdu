@@ -2,30 +2,39 @@ package sheridan.jawedzak.autoedu.bottomNavbar
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_search.*
 import sheridan.jawedzak.autoedu.CameraActivity
 import sheridan.jawedzak.autoedu.R
-import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
+import sheridan.jawedzak.autoedu.dashLightSymbols.*
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnSymbolClickListener {
 
     var list = ArrayList<DatabaseModel>()
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
+    private lateinit var adapter: HomeSymbolAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
             database = FirebaseDatabase.getInstance()
             reference = database.getReference("Symbols")
+
+
+
+            getData()
 
     }
 
@@ -43,6 +52,43 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+    }
+
+    override fun onSymbolItemClicked(position: Int) {
+        //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
+
+        var intent = Intent(activity, SymbolDetail::class.java)
+        intent.putExtra("name", list[position].name)
+        intent.putExtra("trigger", list[position].trigger)
+        intent.putExtra("description", list[position].description)
+        intent.putExtra("solution", list[position].solution)
+        intent.putExtra("icon", list[position].icon)
+        startActivity(intent)
+    }
+
+
+
+    private fun getData(){
+
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e("cancel", p0.toString())
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                for (data in p0.children) {
+                    var model = data.getValue(DatabaseModel::class.java)
+                    list.add(model as DatabaseModel)
+                }
+                if (list.size > 0) {
+                    adapter = HomeSymbolAdapter(list, this@HomeFragment)
+                    home_recyclerview.adapter = adapter
+                    home_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
+                }
+
+            }
+        })
     }
 
     //recycler view to display top 10 indicators

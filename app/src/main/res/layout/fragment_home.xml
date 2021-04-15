@@ -8,6 +8,7 @@
     tools:context=".bottomNavbar.HomeFragment"
     android:orientation="vertical">
 
+
     <ImageView
         android:id="@+id/ic_camera"
         android:layout_width="match_parent"
@@ -31,6 +32,8 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_height="200dp"
+
+
         tools:listitem="@layout/symbol_layout_home"/>
 
     <TextView
@@ -47,6 +50,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_height="200dp"
+
         tools:listitem="@layout/tutorial_layout_home" />
 
 
