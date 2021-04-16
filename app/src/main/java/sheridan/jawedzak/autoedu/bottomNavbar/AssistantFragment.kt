@@ -18,8 +18,8 @@ import sheridan.jawedzak.autoedu.utils.Time
 import sheridan.jawedzak.autoedu.utils.Constants.RECEIVE_ID
 import sheridan.jawedzak.autoedu.utils.Constants.SEND_ID
 import sheridan.jawedzak.autoedu.utils.BotResponse
-import sheridan.jawedzak.autoedu.utils.Constants.OPEN_GOOGLE
-import sheridan.jawedzak.autoedu.utils.Constants.OPEN_SEARCH
+//import sheridan.jawedzak.autoedu.utils.Constants.OPEN_GOOGLE
+//import sheridan.jawedzak.autoedu.utils.Constants.OPEN_SEARCH
 
 
 class AssistantFragment : Fragment() {
@@ -120,23 +120,23 @@ class AssistantFragment : Fragment() {
                 rv_messages.scrollToPosition(adapter.itemCount - 1)
 
                 //open google page
-                when (response) {
-                    Constants.OPEN_GOOGLE -> {
-                        val site = Intent(Intent.ACTION_VIEW)
-                        //google site
-                        site.data = Uri.parse("https://www.google.com/")
-                        startActivity(site)
-                    }
-                    //open google search
-                    Constants.OPEN_SEARCH -> {
-                        val site = Intent(Intent.ACTION_VIEW)
-                        val searchTerm: String? = message.substringAfterLast("search")
-                        //google search site
-                        site.data = Uri.parse("https://www.google.com/search?&q=$searchTerm")
-                        startActivity(site)
-                    }
-
-                }
+//                when (response) {
+//                    Constants.OPEN_GOOGLE -> {
+//                        val site = Intent(Intent.ACTION_VIEW)
+//                        //google site
+//                        site.data = Uri.parse("https://www.google.com/")
+//                        startActivity(site)
+//                    }
+//                    //open google search
+//                    Constants.OPEN_SEARCH -> {
+//                        val site = Intent(Intent.ACTION_VIEW)
+//                        val searchTerm: String? = message.substringAfterLast("search")
+//                        //google search site
+//                        site.data = Uri.parse("https://www.google.com/search?&q=$searchTerm")
+//                        startActivity(site)
+//                    }
+//
+//                }
             }
         }
     }

@@ -7,7 +7,7 @@ object Constants {
     const val RECEIVE_ID = "RECEIVE_ID"
 
     //opening google, search and location
-    const val OPEN_GOOGLE = "Opening Google..."
-    const val OPEN_SEARCH = "Searching..."
-    const val OPEN_LOCATION = "Opening Location..."
+//    const val OPEN_GOOGLE = "Opening Google..."
+//    const val OPEN_SEARCH = "Searching..."
+//    const val OPEN_LOCATION = "Opening Location..."
 }
