@@ -1,9 +1,5 @@
 package sheridan.jawedzak.autoedu.utils
 
-//import sheridan.jawedzak.autoedu.utils.Constants.OPEN_GOOGLE
-//import sheridan.jawedzak.autoedu.utils.Constants.OPEN_LOCATION
-//import sheridan.jawedzak.autoedu.utils.Constants.OPEN_SEARCH
-
 object BotResponse {
 
     //conversation functionality from user
@@ -69,7 +65,7 @@ object BotResponse {
                 //bot will choose to say 0 or 1
                 when (random) {
                     0 -> "Dashboard > History"
-                    1 -> " "
+                    1 -> "Dashboard > History"
                     //otherwise
                     else -> "Sorry, I don't understand can you try rephrasing."
                 }
@@ -84,37 +80,6 @@ object BotResponse {
                     else -> "Sorry, I don't understand can you try rephrasing."
                 }
             }
-
-//            message.contains(" ") -> {
-//                //bot will choose to say 0 or 1
-//                when (random) {
-//                    0 -> " "
-//                    1 -> " "
-//                    //otherwise
-//                    else -> "Sorry, I don't understand can you try rephrasing."
-//                }
-//            }
-
-
-
-
-
-
-            //when user types - google
-//            message.contains("open") && message.contains("google")-> {
-//                //open google
-//                OPEN_GOOGLE
-//            }
-            //when user types - search
-//            message.contains("search")-> {
-//                //open google search
-//                OPEN_SEARCH
-//            }
-            //when user types - location
-//            message.contains("location")-> {
-//                //open location
-//                OPEN_LOCATION
-//            }
 
             //when bot does not understand what the user says
             else -> {

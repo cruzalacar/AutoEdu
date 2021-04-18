@@ -13,27 +13,28 @@ class HomeSymbolAdapter(var list:ArrayList<DatabaseModel>, private val onSymbolC
 
     class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
+        //initialize variables
         var name = itemView.findViewById<TextView>(R.id.name)
-        //var solution = itemView.findViewById<TextView>(R.id.solution)
         var icon = itemView.findViewById<ImageView>(R.id.img)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        //view holder for home symbol layout
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.symbol_layout_home, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        //list of names, icons, and position
         holder.name.text = list[position].name
-        //holder.solution.text = list[position].solution
-
         Picasso.get().load(list[position].icon).into(holder.icon)
 
+        //retrieve symbols
         holder.itemView.setOnClickListener{
             onSymbolClickListener.onSymbolItemClicked(position)
         }
-
     }
 
+    //retrieve list of items
     override fun getItemCount(): Int {
         return list.size
     }

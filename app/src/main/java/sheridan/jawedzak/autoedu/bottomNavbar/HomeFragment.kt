@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -19,8 +18,10 @@ import sheridan.jawedzak.autoedu.dashLightSymbols.*
 
 class HomeFragment : Fragment(), OnSymbolClickListener {
 
+    //array list database
     var list = ArrayList<DatabaseModel>()
 
+    //initialize variable
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
     private lateinit var adapter: HomeSymbolAdapter
@@ -28,14 +29,12 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+            //initialize database and symbols
             database = FirebaseDatabase.getInstance()
             reference = database.getReference("Symbols")
 
-
-
+            //retrieve data
             getData()
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -47,16 +46,15 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Activate camera button when clicked
         ic_camera.setOnClickListener{
             val intent = Intent(activity, CameraActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     override fun onSymbolItemClicked(position: Int) {
-        //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
-
+        //retrieving symbol information
         var intent = Intent(activity, SymbolDetail::class.java)
         intent.putExtra("name", list[position].name)
         intent.putExtra("trigger", list[position].trigger)
@@ -66,27 +64,26 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
         startActivity(intent)
     }
 
-
-
     private fun getData(){
-
+        //pulling data from firebase
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.e("cancel", p0.toString())
             }
 
+            //calling recycler view to access symbols
             override fun onDataChange(p0: DataSnapshot) {
                 for (data in p0.children) {
                     var model = data.getValue(DatabaseModel::class.java)
                     list.add(model as DatabaseModel)
                 }
+
+                //list of symbols
                 if (list.size > 0) {
                     adapter = HomeSymbolAdapter(list, this@HomeFragment)
                     home_recyclerview.adapter = adapter
                     home_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-
                 }
-
             }
         })
     }

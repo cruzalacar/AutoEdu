@@ -17,20 +17,15 @@
         <activity android:name=".splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- History Activity -->
-        <activity android:name=".dashLightSymbols.SymbolActivity"></activity> <!-- Dash Info Activity (Oil Pressure Light Example) -->
-        <activity android:name=".OilPressureActivity"></activity> <!-- Dash Tutorial Activity (Tutorial Oil Pressure Light Example) -->
-        <activity android:name=".TutorialActivity"></activity> <!-- Dash Mechanic Activity (Mechanic Map Location) -->
-        <activity android:name=".MechanicActivity"></activity> <!-- Camera Activity -->
-        <activity android:name=".CameraActivity"></activity> <!-- Bot Activity -->
+        </activity>
+
+        <activity android:name=".TutorialActivity"></activity>
+        <activity android:name=".MechanicActivity"></activity>
+        <activity android:name=".CameraActivity"></activity>
         <activity android:name=".dashLightSymbols.SymbolDetail"></activity>
         <activity android:name=".MainActivity">
-
-            <!-- android:label="@string/app_name" -->
-            <!-- android:theme="@style/Theme.AutoEDU.NoActionBar"> -->
 
         </activity>
     </application>

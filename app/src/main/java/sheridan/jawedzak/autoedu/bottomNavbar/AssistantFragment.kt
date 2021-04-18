@@ -1,7 +1,5 @@
 package sheridan.jawedzak.autoedu.bottomNavbar
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,11 +13,7 @@ import sheridan.jawedzak.autoedu.chatBot.Message
 import sheridan.jawedzak.autoedu.chatBot.MessagingAdapter
 import sheridan.jawedzak.autoedu.utils.Constants
 import sheridan.jawedzak.autoedu.utils.Time
-import sheridan.jawedzak.autoedu.utils.Constants.RECEIVE_ID
-import sheridan.jawedzak.autoedu.utils.Constants.SEND_ID
 import sheridan.jawedzak.autoedu.utils.BotResponse
-//import sheridan.jawedzak.autoedu.utils.Constants.OPEN_GOOGLE
-//import sheridan.jawedzak.autoedu.utils.Constants.OPEN_SEARCH
 
 
 class AssistantFragment : Fragment() {
@@ -31,7 +25,6 @@ class AssistantFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -118,25 +111,6 @@ class AssistantFragment : Fragment() {
 
                 //allow user to scroll to view past and recent messages
                 rv_messages.scrollToPosition(adapter.itemCount - 1)
-
-                //open google page
-//                when (response) {
-//                    Constants.OPEN_GOOGLE -> {
-//                        val site = Intent(Intent.ACTION_VIEW)
-//                        //google site
-//                        site.data = Uri.parse("https://www.google.com/")
-//                        startActivity(site)
-//                    }
-//                    //open google search
-//                    Constants.OPEN_SEARCH -> {
-//                        val site = Intent(Intent.ACTION_VIEW)
-//                        val searchTerm: String? = message.substringAfterLast("search")
-//                        //google search site
-//                        site.data = Uri.parse("https://www.google.com/search?&q=$searchTerm")
-//                        startActivity(site)
-//                    }
-//
-//                }
             }
         }
     }

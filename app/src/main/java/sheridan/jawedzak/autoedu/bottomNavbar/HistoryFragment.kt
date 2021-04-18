@@ -19,8 +19,10 @@ import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 
 class HistoryFragment : Fragment(), OnSymbolClickListener {
 
+    //array list database
     var list = ArrayList<DatabaseModel>()
 
+    //initialize variables
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
     private lateinit var adapter: DataAdapter
@@ -28,12 +30,12 @@ class HistoryFragment : Fragment(), OnSymbolClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //initialize database and symbols
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("Symbols")
 
-
+        //retrieve data
         getData()
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +45,7 @@ class HistoryFragment : Fragment(), OnSymbolClickListener {
     }
 
     override fun onSymbolItemClicked(position: Int) {
-        //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
-
+        //retrieving symbol information
         var intent = Intent(activity, SymbolDetail::class.java)
         intent.putExtra("name", list[position].name)
         intent.putExtra("trigger", list[position].trigger)
@@ -55,23 +56,25 @@ class HistoryFragment : Fragment(), OnSymbolClickListener {
     }
 
     private fun getData(){
-
+        //pulling data from firebase
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.e("cancel", p0.toString())
             }
 
+            //calling recycler view to access symbols
             override fun onDataChange(p0: DataSnapshot) {
                 for (data in p0.children) {
                     var model = data.getValue(DatabaseModel::class.java)
                     list.add(model as DatabaseModel)
                 }
+
+                //list of symbols
                 if (list.size > 0) {
                     adapter = DataAdapter(list, this@HistoryFragment)
                     history_recyclerview.adapter = adapter
                     history_recyclerview.layoutManager = LinearLayoutManager(activity)
                 }
-
             }
         })
     }

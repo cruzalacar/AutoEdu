@@ -1,5 +1,6 @@
 package sheridan.jawedzak.autoedu.dashLightSymbols
 
+//database model used for symbol information
 class DatabaseModel {
     var name: String = ""
     var trigger: String = ""
@@ -11,6 +12,7 @@ class DatabaseModel {
 
     }
 
+    //retrieve symbol list
     constructor(name: String, trigger: String, description: String, solution: String, icon: String){
         this.name = name
         this.trigger = trigger
@@ -18,5 +20,4 @@ class DatabaseModel {
         this.solution = solution
         this.icon = icon
     }
-
 }

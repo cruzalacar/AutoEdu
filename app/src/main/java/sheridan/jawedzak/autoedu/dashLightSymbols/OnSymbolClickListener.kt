@@ -1,8 +1,7 @@
 package sheridan.jawedzak.autoedu.dashLightSymbols
 
-import java.text.FieldPosition
-
 interface OnSymbolClickListener {
 
+    //symbol item clicked for dash light
     fun onSymbolItemClicked(position: Int)
 }

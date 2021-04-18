@@ -24,6 +24,5 @@ class TutorialActivity : AppCompatActivity() {
         backBtn.setOnClickListener{
             startActivity(Intent(this@TutorialActivity, HomeFragment::class.java))
         }
-
     }
 }

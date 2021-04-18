@@ -10,11 +10,9 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import sheridan.jawedzak.autoedu.R
-import sheridan.jawedzak.autoedu.chatBot.MessagingAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
 import sheridan.jawedzak.autoedu.dashLightSymbols.OnSymbolClickListener
@@ -23,8 +21,10 @@ import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 
 class SearchFragment : Fragment(), OnSymbolClickListener {
 
+    //array list database
     var list = ArrayList<DatabaseModel>()
 
+    //initialize variables
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
     private lateinit var adapter: DataAdapter
@@ -32,12 +32,12 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //initialize database and symbols
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("Symbols")
 
-
+        //retrieve data
         getData()
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +47,7 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
     }
 
     override fun onSymbolItemClicked(position: Int) {
-        //Toast.makeText(this, list[position].name, Toast.LENGTH_LONG).show()
-
+        //retrieving symbol information
         var intent = Intent(activity, SymbolDetail::class.java)
         intent.putExtra("name", list[position].name)
         intent.putExtra("trigger", list[position].trigger)
@@ -60,27 +59,32 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
 
 
      private fun getData(){
-
+         //pulling data from firebase
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.e("cancel", p0.toString())
             }
 
+            //calling recycler view to access symbols
             override fun onDataChange(p0: DataSnapshot) {
                 for (data in p0.children) {
                     var model = data.getValue(DatabaseModel::class.java)
                     list.add(model as DatabaseModel)
                 }
+
+                //list of symbols
                 if (list.size > 0) {
                     adapter = DataAdapter(list, this@SearchFragment)
                     recyclerview.adapter = adapter
                     recyclerview.layoutManager = LinearLayoutManager(activity)
 
-
+                    //search bar listener
                     search_bar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                         override fun onQueryTextSubmit(p0: String?): Boolean {
                             search_bar.clearFocus()
                             for (x in list) {
+
+                                //activate when name/symbol is found
                                 if (x.name == p0) {
                                     Toast.makeText(
                                         activity,
@@ -88,24 +92,13 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
-//                                    else {
-//                                        Toast.makeText(
-//                                            applicationContext,
-//                                            list.get(0).toString(),
-//                                            Toast.LENGTH_SHORT
-//                                        ).show()
-//                                    }
                             }
+                            //otherwise, code not found
                             return false
                         }
 
+                        //boolean used to test name found
                         override fun onQueryTextChange(p0: String?): Boolean {
-//                                Toast.makeText(
-//                                    applicationContext,
-//                                    "QUERY",
-//                                    Toast.LENGTH_SHORT
-//                                ).show()
-
                             return false
                         }
                     })
