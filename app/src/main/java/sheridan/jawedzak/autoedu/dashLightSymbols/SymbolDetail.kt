@@ -15,7 +15,7 @@ class SymbolDetail  : AppCompatActivity(){
 
         //action bar
         val actionbar = supportActionBar
-        actionbar!!.title = "Dashboard"
+        actionbar!!.title = intent.getStringExtra("name")
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 

@@ -12,13 +12,24 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_search.*
 
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
+import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
+import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 import sheridan.jawedzak.autoedu.ml.MobilenetV110224Quant
 
 class CameraActivity : AppCompatActivity() {
+
+    var list = ArrayList<DatabaseModel>()
 
     //initialize variables
     lateinit var select_image_button : Button
@@ -26,6 +37,8 @@ class CameraActivity : AppCompatActivity() {
     lateinit var img_view : ImageView
     lateinit var text_view : TextView
     lateinit var bitmap: Bitmap
+    lateinit var seatbelt_button : Button
+    private lateinit var reference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +49,9 @@ class CameraActivity : AppCompatActivity() {
         make_prediction = findViewById(R.id.button2)
         img_view = findViewById(R.id.imageView2)
         text_view = findViewById(R.id.textView)
+        seatbelt_button = findViewById(R.id.seatbelt_btn)
+
+
 
         //label assets
         val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
@@ -49,6 +65,12 @@ class CameraActivity : AppCompatActivity() {
             //retrieve result to next page
             startActivityForResult(intent, 100)
         })
+
+        seatbelt_button.setOnClickListener {
+            var intent = Intent(this@CameraActivity, SeatBeltActivity::class.java)
+
+            startActivity(intent)
+        }
 
         //scan image method
         make_prediction.setOnClickListener(View.OnClickListener {
@@ -69,10 +91,33 @@ class CameraActivity : AppCompatActivity() {
             var max = getMax(outputFeature0.floatArray)
             text_view.setText(labels[max])
 
+
+
+
             // Releases model resources if no longer used.
             model.close()
+
+
         })
     }
+
+
+    /*private fun getData() {
+        //pulling data from firebase
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e("cancel", p0.toString())
+            }
+
+            //calling recycler view to access symbols
+            override fun onDataChange(p0: DataSnapshot) {
+                for (data in p0.children) {
+                    var model = data.getValue(DatabaseModel::class.java)
+                    list.add(model as DatabaseModel)
+                }
+            }
+        })
+    }*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
