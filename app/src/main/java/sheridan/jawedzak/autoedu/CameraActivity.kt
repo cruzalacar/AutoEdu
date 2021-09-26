@@ -32,10 +32,6 @@ class CameraActivity : AppCompatActivity() {
     var list = ArrayList<DatabaseModel>()
 
     //initialize variables
-    //testing commit
-    //commit
-    //commit
-
     lateinit var select_image_button : Button
     lateinit var make_prediction : Button
     lateinit var img_view : ImageView
