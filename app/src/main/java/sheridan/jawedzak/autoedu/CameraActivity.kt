@@ -21,6 +21,7 @@ import sheridan.jawedzak.autoedu.ml.MobilenetV110224Quant
 class CameraActivity : AppCompatActivity() {
 
     //initialize variables
+    //testing commit
     lateinit var select_image_button : Button
     lateinit var make_prediction : Button
     lateinit var img_view : ImageView
