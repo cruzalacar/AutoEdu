@@ -23,7 +23,10 @@
         android:layout_height="wrap_content"
         android:text="Most Common Indicator Lights"
         android:textSize="20dp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        ></TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_recyclerview"
@@ -41,7 +44,9 @@
         android:layout_height="wrap_content"
         android:text="Most Searched Tutorials"
         android:textSize="20dp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"></TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tutorial_recyclerview"
