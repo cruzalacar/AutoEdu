@@ -24,6 +24,7 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(i)
 
             //fade in and out image
+            // testing comment
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
         }
