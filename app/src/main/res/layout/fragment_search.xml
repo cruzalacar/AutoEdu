@@ -7,35 +7,18 @@
     android:orientation="vertical"
     tools:context=".bottomNavbar.SearchFragment">
 
-
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:hint="Type a message..."
         android:background="@drawable/round_button"
         android:backgroundTint="#E8E9EB"
         android:padding="10dp"
         android:singleLine="true" />
 
-    <!--<EditText
-        android:id="@+id/search_bar"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:hint="Type a message..."
-        android:background="@drawable/round_button"
-        android:backgroundTint="#E8E9EB"
-        android:padding="10dp"
-        android:singleLine="true">
-        </EditText>-->
-
-
-
-    <Button
+    <!--<Button
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:text="Filter"
@@ -43,10 +26,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#898a8b">
-
-    </Button>
-
-
+    </Button>-->
 
         <!-- recycler view for loading list of symbols-->
         <androidx.recyclerview.widget.RecyclerView
@@ -58,7 +38,4 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_height="match_parent"
             tools:listitem="@layout/rv_layout"/>
-
-
-
 </LinearLayout>

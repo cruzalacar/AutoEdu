@@ -3,13 +3,12 @@ package sheridan.jawedzak.autoedu.bottomNavbar
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -41,8 +40,10 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
         getData()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
@@ -56,6 +57,19 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
         intent.putExtra("solution", list[position].solution)
         intent.putExtra("icon", list[position].icon)
         startActivity(intent)
+    }
+
+    //Search View filter
+    private fun searchResult(query: String) {
+        val q = query.toLowerCase()
+        val updatedList: MutableList<DatabaseModel> = ArrayList()
+        for (modelContacts in list) {
+            if (modelContacts.name.toLowerCase().contains(q)) {
+                updatedList.add(modelContacts)
+            }
+        }
+        adapter = DataAdapter(updatedList as ArrayList<DatabaseModel>, this@SearchFragment)
+        recyclerview.adapter = adapter
     }
 
 
@@ -85,12 +99,11 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
                         override fun onQueryTextSubmit(p0: String?): Boolean {
                             search_bar.clearFocus()
                             for (x in list) {
-
                                 //activate when name/symbol is found
                                 if (x.name == p0) {
                                     Toast.makeText(
                                         activity,
-                                        "Found",
+                                        "Symbol Found",
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
@@ -101,7 +114,10 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
 
                         //boolean used to test name found
                         override fun onQueryTextChange(p0: String?): Boolean {
-                            return false
+                            if (p0 != null) {
+                                searchResult(p0)
+                            }
+                            return true
                         }
                     })
                 }
