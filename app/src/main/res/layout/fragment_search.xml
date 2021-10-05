@@ -15,6 +15,8 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
         android:backgroundTint="#E8E9EB"
+        android:queryHint="Search... "
+        android:iconifiedByDefault="false"
         android:padding="10dp"
         android:singleLine="true" />
 
