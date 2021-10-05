@@ -64,6 +64,7 @@ class HistoryFragment : Fragment(), OnSymbolClickListener {
 
             //calling recycler view to access symbols
             override fun onDataChange(p0: DataSnapshot) {
+                list.clear()
                 for (data in p0.children) {
                     var model = data.getValue(DatabaseModel::class.java)
                     list.add(model as DatabaseModel)
