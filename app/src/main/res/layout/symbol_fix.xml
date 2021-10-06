@@ -6,21 +6,23 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!--<TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
+
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Name"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Video:"
         android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
+        android:textSize="25dp"
+        android:textStyle="bold"/>
 
 
+
+<!--
     <ImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
@@ -40,8 +42,6 @@
         android:textColor="#000000"
         android:textSize="15sp"
         android:layout_gravity="center"/>
-
-
 
     <TextView
         android:id="@+id/textView9"
@@ -68,8 +68,6 @@
         android:textSize="18sp"
         android:background="#E8E9EB"
         tools:listitem="@layout/text_layout"/>
-
-
 
     <TextView
         android:id="@+id/textView7"
@@ -108,7 +106,6 @@
         android:text="Learn how to fix it!"
         android:backgroundTint="#4D9DE9"
         android:layout_gravity="center" />
-
-
+-->
 
 </LinearLayout>

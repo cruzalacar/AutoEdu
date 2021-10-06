@@ -16,11 +16,11 @@
     <!-- mechanics/autoshop-->
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Mechanics"
+        android:layout_width="180dp"
+        android:layout_height="124dp"
         android:layout_gravity="center"
-        android:textSize="20dp"/>
+        android:text="Mechanics: https://youtu.be/tEdtUFCRLbo "
+        android:textSize="20dp" />
 
 <!--    <com.google.android.gms.maps.MapView-->
 <!--        android:id="@+id/mapView"-->

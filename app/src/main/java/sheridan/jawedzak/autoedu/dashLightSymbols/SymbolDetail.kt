@@ -1,6 +1,8 @@
 package sheridan.jawedzak.autoedu.dashLightSymbols
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +39,17 @@ class SymbolDetail  : AppCompatActivity(){
         lblDescription.text = description
         lblTrigger.text = trigger
         lblSolution.text = solution
+
+
+
+        //TESTING "LEARN HOW TO FIX" BUTTON
+        val mechanicBtn = findViewById<Button>(R.id.btn_fix)
+        mechanicBtn.setOnClickListener{
+            startActivity(Intent(this@SymbolDetail, SymbolFix::class.java))
+        }
+        //TESTING "LEARN HOW TO FIX" BUTTON
+
+
     }
 
     //back button navigation
