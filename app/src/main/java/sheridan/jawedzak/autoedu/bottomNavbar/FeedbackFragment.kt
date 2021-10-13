@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_history.*
+import kotlinx.android.synthetic.main.fragment_feedback.*
 import sheridan.jawedzak.autoedu.R
 import sheridan.jawedzak.autoedu.dashLightSymbols.OnSymbolClickListener
 
-class HistoryFragment : Fragment(), OnSymbolClickListener {
+class FeedbackFragment : Fragment(), OnSymbolClickListener {
 
     private lateinit var reference: DatabaseReference
 
@@ -22,7 +22,7 @@ class HistoryFragment : Fragment(), OnSymbolClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        return inflater.inflate(R.layout.fragment_feedback, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class HistoryFragment : Fragment(), OnSymbolClickListener {
             val editfeedback = feedback.text.toString()
 
             reference = FirebaseDatabase.getInstance().getReference("Users")
-            val User = User(editname, editemail, editfeedback)
+            val User = UserFeedback(editname, editemail, editfeedback)
             reference.child(editname).setValue(User).addOnSuccessListener {
 
                 //clear fields

@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val searchFragment = SearchFragment()
         val assistantFragment = AssistantFragment()
-        val historyFragment = HistoryFragment()
+        val feedbackFragment = FeedbackFragment()
         val accountFragment = AccountFragment()
 
         //current fragment is home/dashboard
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.ic_home -> makeCurrentFragement(homeFragment)
                 R.id.ic_search -> makeCurrentFragement(searchFragment)
                 R.id.ic_live_help -> makeCurrentFragement(assistantFragment)
-                R.id.ic_history -> makeCurrentFragement(historyFragment)
+                R.id.ic_history -> makeCurrentFragement(feedbackFragment)
                 R.id.ic_account -> makeCurrentFragement(accountFragment)
             }
             true
