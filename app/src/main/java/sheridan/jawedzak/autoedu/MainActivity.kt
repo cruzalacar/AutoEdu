@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.ic_home -> makeCurrentFragement(homeFragment)
                 R.id.ic_search -> makeCurrentFragement(searchFragment)
                 R.id.ic_live_help -> makeCurrentFragement(assistantFragment)
-                R.id.ic_history -> makeCurrentFragement(feedbackFragment)
+                R.id.ic_feedback -> makeCurrentFragement(feedbackFragment)
                 R.id.ic_account -> makeCurrentFragement(accountFragment)
             }
             true
