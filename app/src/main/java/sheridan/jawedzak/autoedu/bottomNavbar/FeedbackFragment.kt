@@ -10,6 +10,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_feedback.*
 import sheridan.jawedzak.autoedu.R
 import sheridan.jawedzak.autoedu.dashLightSymbols.OnSymbolClickListener
+import sheridan.jawedzak.autoedu.feedback.UserFeedback
 
 class FeedbackFragment : Fragment(), OnSymbolClickListener {
 
