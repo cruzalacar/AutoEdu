@@ -34,27 +34,36 @@ class FeedbackFragment : Fragment(), OnSymbolClickListener {
             val editemail = email.text.toString()
             val editfeedback = feedback.text.toString()
 
-            reference = FirebaseDatabase.getInstance().getReference("Users")
-            val User = UserFeedback(editname, editemail, editfeedback)
-            reference.child(editname).setValue(User).addOnSuccessListener {
-
-                //clear fields
-                name.text.clear()
-                email.text.clear()
-                feedback.text.clear()
-
-                //show success message
+            if (editname.trim().equals("") || editemail.trim().equals("") || editfeedback.trim().equals("")){
                 Toast.makeText(
-                    activity,
-                    "Submitted",
-                    Toast.LENGTH_SHORT
+                        activity,
+                        "All fields are required",
+                        Toast.LENGTH_SHORT
                 ).show()
-            }.addOnFailureListener{
-                Toast.makeText(
-                    activity,
-                    "could not submit",
-                    Toast.LENGTH_SHORT
-                ).show()
+            }
+            else {
+                reference = FirebaseDatabase.getInstance().getReference("Users")
+                val User = UserFeedback(editname, editemail, editfeedback)
+                reference.child(editname).setValue(User).addOnSuccessListener {
+
+                    //clear fields
+                    name.text.clear()
+                    email.text.clear()
+                    feedback.text.clear()
+
+                    //show success message
+                    Toast.makeText(
+                            activity,
+                            "Submitted",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                }.addOnFailureListener{
+                    Toast.makeText(
+                            activity,
+                            "could not submit",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
