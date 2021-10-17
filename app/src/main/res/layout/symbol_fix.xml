@@ -6,8 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="match_parent"
@@ -15,61 +13,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
-        android:text="Video:"
-        android:textColor="#000000"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
-
-
-
-
-    <com.google.android.youtube.player.YouTubePlayerView
-        android:id="@+id/youtubePlayer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        />
-
-
-<!--    <Button-->
-<!--        android:id="@+id/btnPlay"-->
-<!--        android:layout_width="130dp"-->
-<!--        android:layout_height="128dp">-->
-
-<!--    </Button>-->
-
-
-
-
-<!--
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="match_parent"
-        android:layout_height="167dp"
-        android:background="@drawable/symbol_gradient"
-        android:padding="10dp"
-        android:src="@drawable/ic_baseline_arrow_forward_24" />
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Description"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:text="What Triggers the Alert"
+        android:text="Steps:"
         android:textColor="#000000"
         android:textSize="25dp"
         android:textStyle="bold"/>
@@ -118,13 +62,5 @@
         tools:listitem="@layout/text_layout"
         android:background="#E8E9EB"/>
 
-    <Button
-        android:id="@+id/btn_fix"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:text="Learn how to fix it!"
-        android:backgroundTint="#4D9DE9"
-        android:layout_gravity="center" />
--->
 
 </LinearLayout>

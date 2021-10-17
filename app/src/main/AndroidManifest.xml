@@ -27,6 +27,7 @@
         <activity android:name=".CameraActivity"></activity>
         <activity android:name=".dashLightSymbols.SymbolDetail"></activity>
         <activity android:name=".dashLightSymbols.SymbolFix"></activity>
+<!--        <activity android:name=".bottomNavbar.HistoryFragment"></activity>-->
         <activity android:name=".MainActivity">
 
         </activity>
