@@ -27,11 +27,19 @@ class SymbolDetail  : AppCompatActivity(){
         var description = intent.getStringExtra("description")
         var trigger = intent.getStringExtra("trigger")
         var solution = intent.getStringExtra("solution")
+        var tools = intent.getStringExtra("tools")
+        //var steps = intent.getStringExtra("steps")
+        var video = intent.getStringExtra("video")
 
         //initialize labels
         val lblDescription = findViewById<TextView>(R.id.description)
         val lblTrigger = findViewById<TextView>(R.id.trigger)
         val lblSolution = findViewById<TextView>(R.id.solution)
+        val lblTools = findViewById<TextView>(R.id.tools)
+        //val lblSteps = findViewById<TextView>(R.id.steps)
+        val lblVideo = findViewById<TextView>(R.id.video)
+
+
         val img = findViewById<ImageView>(R.id.img)
 
         //label for each symbol information
@@ -39,6 +47,9 @@ class SymbolDetail  : AppCompatActivity(){
         lblDescription.text = description
         lblTrigger.text = trigger
         lblSolution.text = solution
+        lblTools.text = tools
+        //lblSteps.text = steps
+        lblVideo.text = video
 
 
 

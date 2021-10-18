@@ -1,19 +1,9 @@
 package sheridan.jawedzak.autoedu.dashLightSymbols
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.youtube.player.YouTubeBaseActivity
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.symbol_fix.*
 import sheridan.jawedzak.autoedu.R
-import java.util.regex.Pattern
 
 class SymbolFix  : AppCompatActivity(){
 

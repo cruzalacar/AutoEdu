@@ -61,6 +61,11 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
         intent.putExtra("description", list[position].description)
         intent.putExtra("solution", list[position].solution)
         intent.putExtra("icon", list[position].icon)
+        intent.putExtra("tools", list[position].tools)
+        //intent.putExtra("steps", list[position].steps)
+        intent.putExtra("video", list[position].video)
+
+
         startActivity(intent)
     }
 
