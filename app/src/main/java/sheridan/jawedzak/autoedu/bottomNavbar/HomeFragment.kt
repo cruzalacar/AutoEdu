@@ -61,9 +61,9 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
         intent.putExtra("description", list[position].description)
         intent.putExtra("solution", list[position].solution)
         intent.putExtra("icon", list[position].icon)
-        intent.putExtra("tools", list[position].tools)
-        //intent.putExtra("steps", list[position].steps)
-        intent.putExtra("video", list[position].video)
+//        intent.putExtra("tools", list[position].tools)
+        intent.putExtra("steps", list[position].steps)
+//        intent.putExtra("video", list[position].video)
 
 
         startActivity(intent)
@@ -80,6 +80,7 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
             override fun onDataChange(p0: DataSnapshot) {
                 list.clear()
                 for (data in p0.children) {
+                    Log.e("data", data.toString())
                     var model = data.getValue(DatabaseModel::class.java)
                     list.add(model as DatabaseModel)
                 }

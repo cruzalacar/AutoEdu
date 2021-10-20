@@ -26,6 +26,7 @@ import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
 import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 import sheridan.jawedzak.autoedu.ml.MobilenetV110224Quant
+import sheridan.jawedzak.autoedu.ml.SymbolModel
 
 class CameraActivity : AppCompatActivity() {
 
@@ -75,7 +76,8 @@ class CameraActivity : AppCompatActivity() {
         //scan image method
         make_prediction.setOnClickListener(View.OnClickListener {
             var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-            val model = MobilenetV110224Quant.newInstance(this)
+//            val model = MobilenetV110224Quant.newInstance(this)
+            var model = SymbolModel.newInstance(this)
             var tbuffer = TensorImage.fromBitmap(resized)
             var byteBuffer = tbuffer.buffer
 
