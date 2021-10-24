@@ -2,14 +2,18 @@ package sheridan.jawedzak.autoedu.dashLightSymbols
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 import sheridan.jawedzak.autoedu.R
 
 class SymbolDetail  : AppCompatActivity(){
+
+    private lateinit var steps: HashMap<String, String>
+    private lateinit var triggerSelections: List<String>
+    private lateinit var triggers: HashMap<String, String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,41 +29,60 @@ class SymbolDetail  : AppCompatActivity(){
         var name = intent.getStringExtra("name")
         var icon = intent.getStringExtra("icon")
         var description = intent.getStringExtra("description")
-        var trigger = intent.getStringExtra("trigger")
         var solution = intent.getStringExtra("solution")
-        var tools = intent.getStringExtra("tools")
-        //var steps = intent.getStringExtra("steps")
+        triggers = intent.getSerializableExtra("trigger") as HashMap<String, String>
+        steps = intent.getSerializableExtra("steps") as HashMap<String, String>
         var video = intent.getStringExtra("video")
+
+        triggerSelections = triggers.keys.toList()
 
         //initialize labels
         val lblDescription = findViewById<TextView>(R.id.description)
-        val lblTrigger = findViewById<TextView>(R.id.trigger)
+        val triggerSpinner: Spinner = findViewById(R.id.triggerSpinner)
+        val lblTriggerDesc = findViewById<TextView>(R.id.trigger_desc)
         val lblSolution = findViewById<TextView>(R.id.solution)
-        val lblTools = findViewById<TextView>(R.id.tools)
-        //val lblSteps = findViewById<TextView>(R.id.steps)
-        val lblVideo = findViewById<TextView>(R.id.video)
+//        val lblVideo = findViewById<TextView>(R.id.video)
 
 
         val img = findViewById<ImageView>(R.id.img)
 
+        // initialize spinner
+        val triggerAdapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, triggerSelections)
+        triggerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+        triggerSpinner.adapter = triggerAdapter
+
+
+        val defaultTrigger: String = triggerSelections[0]
+
+
         //label for each symbol information
         Picasso.get().load(icon).into(img)
         lblDescription.text = description
-        lblTrigger.text = trigger
+        lblTriggerDesc.text = triggers[defaultTrigger]
         lblSolution.text = solution
-        lblTools.text = tools
-        //lblSteps.text = steps
-        lblVideo.text = video
+//        //lblSteps.text = steps
+//        lblVideo.text = video
 
-
+        triggerSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                var mapKey: String = triggerSelections[position]
+                var triggerDesc = triggers[mapKey]
+                val lblTriggerDesc = findViewById<TextView>(R.id.trigger_desc)
+                lblTriggerDesc.text = triggerDesc
+            }
+        }
 
         //TESTING "LEARN HOW TO FIX" BUTTON
         val mechanicBtn = findViewById<Button>(R.id.btn_fix)
         mechanicBtn.setOnClickListener{
-            startActivity(Intent(this@SymbolDetail, SymbolFix::class.java))
+            var symbolFixIntent = Intent(this@SymbolDetail, SymbolFix::class.java)
+            symbolFixIntent.putExtra("steps", steps)
+            startActivity(symbolFixIntent)
         }
         //TESTING "LEARN HOW TO FIX" BUTTON
-
 
     }
 
@@ -69,4 +92,6 @@ class SymbolDetail  : AppCompatActivity(){
         onBackPressed()
         return true
     }
+
+
 }

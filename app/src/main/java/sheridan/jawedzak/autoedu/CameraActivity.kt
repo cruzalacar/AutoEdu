@@ -5,26 +5,19 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_search.*
 
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import sheridan.jawedzak.autoedu.dashLightSymbols.DataAdapter
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
-import sheridan.jawedzak.autoedu.dashLightSymbols.SymbolDetail
 import sheridan.jawedzak.autoedu.ml.MobilenetV110224Quant
 import sheridan.jawedzak.autoedu.ml.SymbolModel
 
@@ -52,7 +45,16 @@ class CameraActivity : AppCompatActivity() {
         text_view = findViewById(R.id.textView)
         seatbelt_button = findViewById(R.id.seatbelt_btn)
 
+        //download tf model
+//        val conditions = CustomModelDownloadConditions.Builder().requireWifi().build()
 
+//        // The CustomModel object contains the local path of the model file
+//        FirebaseModelDownloader.getInstance().getModel("dashsymbol_model", DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND, conditions).addOnSuccessListener {
+//            model: CustomModel? -> val modelFile = model?.file
+//                    if (modelFile != null) {
+//                        interpreter = Interpreter(modelFile)
+//                    }
+//                }
 
         //label assets
         val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
@@ -67,22 +69,22 @@ class CameraActivity : AppCompatActivity() {
             startActivityForResult(intent, 100)
         })
 
-        seatbelt_button.setOnClickListener {
-            var intent = Intent(this@CameraActivity, SeatBeltActivity::class.java)
-
-            startActivity(intent)
-        }
+//        seatbelt_button.setOnClickListener {
+//            var intent = Intent(this@CameraActivity, SeatBeltActivity::class.java)
+//
+//            startActivity(intent)
+//        }
 
         //scan image method
         make_prediction.setOnClickListener(View.OnClickListener {
-            var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-//            val model = MobilenetV110224Quant.newInstance(this)
+            var resized = Bitmap.createScaledBitmap(bitmap, 180, 180, true)
+//            var model = MobilenetV110224Quant.newInstance(this)
             var model = SymbolModel.newInstance(this)
             var tbuffer = TensorImage.fromBitmap(resized)
             var byteBuffer = tbuffer.buffer
 
             // Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
+            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 180, 180, 3), DataType.UINT8)
             inputFeature0.loadBuffer(byteBuffer)
 
             // Runs model inference and gets result.

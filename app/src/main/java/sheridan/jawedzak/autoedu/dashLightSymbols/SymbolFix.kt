@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import sheridan.jawedzak.autoedu.R
+import java.util.*
+import kotlin.collections.HashMap
 
 class SymbolFix  : AppCompatActivity(){
 
@@ -21,14 +23,22 @@ class SymbolFix  : AppCompatActivity(){
         var name = intent.getStringExtra("name")
         var trigger = intent.getStringExtra("trigger")
         var solution = intent.getStringExtra("solution")
+        var steps = intent.getSerializableExtra("steps") as HashMap<String, String>
+//        var steps = intent.get
 
-        //initialize labels
-        val lblTrigger = findViewById<TextView>(R.id.trigger)
+        var stepsString: String = ""
+        var stepNumber: Int = 1
+
+        for ((k, v) in steps.toSortedMap()) {
+            stepsString += "Step ${stepNumber}. ${v}\n\n"
+            stepNumber++
+        }
+
+
         val lblSolution = findViewById<TextView>(R.id.solution)
 
         //label for each symbol information
-        lblTrigger.text = trigger
-        lblSolution.text = solution
+        lblSolution.text = stepsString
     }
 
     //back button navigation
