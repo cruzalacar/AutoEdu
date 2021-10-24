@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import sheridan.jawedzak.autoedu.MainActivity
 import sheridan.jawedzak.autoedu.R
+import sheridan.jawedzak.autoedu.userProfile.LoginActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,7 @@ class SplashScreenActivity : AppCompatActivity() {
         lod.animate().setDuration(1500).alpha(1f).withEndAction {
 
             //open main activity
-            val i = Intent(this, MainActivity::class.java)
+            val i = Intent(this, LoginActivity::class.java)
             startActivity(i)
 
             //fade in and out image

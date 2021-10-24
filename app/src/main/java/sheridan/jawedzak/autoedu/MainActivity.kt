@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val searchFragment = SearchFragment()
         val assistantFragment = AssistantFragment()
         val feedbackFragment = FeedbackFragment()
-        val accountFragment = AccountFragment()
+        val accountFragment = ProfileFragment()
 
         //current fragment is home/dashboard
         makeCurrentFragement(homeFragment)
