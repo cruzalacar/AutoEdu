@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".bottomNavbar.FeedbackFragment">
 
@@ -13,20 +12,22 @@
         android:layout_height="66dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Enter name..." />
+        android:hint="Enter name" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:hint="Enter emaill..." />
+        android:layout_height="66dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="Enter email" />
 
     <EditText
         android:id="@+id/feedback"
         android:layout_width="match_parent"
         android:layout_height="174dp"
         android:gravity="top"
-        android:hint="Enter feedback..." />
+        android:hint="Enter feedback" />
 
     <Button
         android:id="@+id/btn_submit"
