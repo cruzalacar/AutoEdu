@@ -12,48 +12,63 @@ import sheridan.jawedzak.autoedu.R
 
 class LoginActivity : AppCompatActivity() {
 
+    //get firebase authentication
     lateinit var auth: FirebaseAuth
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //user info from firebase
         auth = FirebaseAuth.getInstance()
 
+        //get current user login from database
         val currentuser = auth.currentUser
+
+        //if there is no current user logged in, go to login activity
         if(currentuser != null) {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
+        //user logged in
         login()
     }
 
     private fun login() {
-
+        //login button on click listener and error checking
         loginButton.setOnClickListener {
 
+            //empty info - tell user to enter email
             if(TextUtils.isEmpty(emailInput.text.toString())){
                 emailInput.setError("Please enter email")
                 return@setOnClickListener
             }
+            //empty info - tell user to enter password
             else if(TextUtils.isEmpty(passwordInput.text.toString())){
                 emailInput.setError("Please enter password")
                 return@setOnClickListener
             }
+
+            //firebase login info authentication - get user sign in, email, password approved
             auth.signInWithEmailAndPassword(emailInput.text.toString(), passwordInput.text.toString())
                 .addOnCompleteListener {
+                    //user login success
                     if(it.isSuccessful) {
+                        //go to home page
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         finish()
+
+                    //user login unsuccessful
                     } else {
+                        //stay in login page and tell user to try again
                         Toast.makeText(this@LoginActivity, "Login failed, please try again! ", Toast.LENGTH_LONG).show()
                     }
                 }
-
         }
 
+        //user registration button/create account
         registerText.setOnClickListener{
+            //go to registration page for user to sign up
             startActivity(Intent(this@LoginActivity, RegistrationActivity::class.java))
 
         }

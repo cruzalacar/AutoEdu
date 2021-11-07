@@ -49,16 +49,15 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
     }
 
     override fun onSymbolItemClicked(position: Int) {
-        //retrieving symbol information
+        //retrieving symbol information from database
         var intent = Intent(activity, SymbolDetail::class.java)
         intent.putExtra("name", list[position].name)
         intent.putExtra("trigger", list[position].trigger)
         intent.putExtra("description", list[position].description)
         intent.putExtra("solution", list[position].solution)
         intent.putExtra("icon", list[position].icon)
-//        intent.putExtra("tools", list[position].tools)
         intent.putExtra("steps", list[position].steps)
-//        intent.putExtra("video", list[position].video)
+        //open next activity
         startActivity(intent)
     }
 
@@ -71,6 +70,7 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
                 updatedList.add(modelContacts)
             }
         }
+        //array list of symbols displayed on recycler view
         adapter = DataAdapter(updatedList as ArrayList<DatabaseModel>, this@SearchFragment)
         recyclerview.adapter = adapter
     }
@@ -108,7 +108,7 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
                                         activity,
                                         "Symbol Found",
                                         Toast.LENGTH_SHORT
-                                    ).show()
+                                    ).show() //show toast message
                                 }
                             }
                             //otherwise, code not found

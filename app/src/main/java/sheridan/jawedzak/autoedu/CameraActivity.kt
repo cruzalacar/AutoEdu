@@ -56,6 +56,7 @@ class CameraActivity : AppCompatActivity() {
 //                    }
 //                }
 
+
         //label assets
         val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
 
@@ -68,12 +69,6 @@ class CameraActivity : AppCompatActivity() {
             //retrieve result to next page
             startActivityForResult(intent, 100)
         })
-
-//        seatbelt_button.setOnClickListener {
-//            var intent = Intent(this@CameraActivity, SeatBeltActivity::class.java)
-//
-//            startActivity(intent)
-//        }
 
         //scan image method
         make_prediction.setOnClickListener(View.OnClickListener {
@@ -95,13 +90,8 @@ class CameraActivity : AppCompatActivity() {
             var max = getMax(outputFeature0.floatArray)
             text_view.setText(labels[max])
 
-
-
-
             // Releases model resources if no longer used.
             model.close()
-
-
         })
     }
 

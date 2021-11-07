@@ -54,18 +54,16 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
     }
 
     override fun onSymbolItemClicked(position: Int) {
-        //retrieving symbol information
+        //retrieving symbol information from database
         var intent = Intent(activity, SymbolDetail::class.java)
         intent.putExtra("name", list[position].name)
         intent.putExtra("trigger", list[position].trigger)
         intent.putExtra("description", list[position].description)
         intent.putExtra("solution", list[position].solution)
         intent.putExtra("icon", list[position].icon)
-//        intent.putExtra("tools", list[position].tools)
         intent.putExtra("steps", list[position].steps)
-//        intent.putExtra("video", list[position].video)
 
-
+        //open activity
         startActivity(intent)
     }
 
@@ -81,7 +79,9 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
                 list.clear()
                 for (data in p0.children) {
                     Log.e("data", data.toString())
+                    //retrieve list of symbols from database
                     var model = data.getValue(DatabaseModel::class.java)
+                    //list of symbols
                     list.add(model as DatabaseModel)
                 }
 
@@ -89,6 +89,7 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
                 if (list.size > 0) {
                     adapter = HomeSymbolAdapter(list, this@HomeFragment)
                     home_recyclerview.adapter = adapter
+                    //horizontal layout view rotation
                     home_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
                 }
             }

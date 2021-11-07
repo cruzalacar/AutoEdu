@@ -11,6 +11,7 @@ import sheridan.jawedzak.autoedu.R
 
 class SymbolDetail  : AppCompatActivity(){
 
+    //hash maps for steps, triggers and selections
     private lateinit var steps: HashMap<String, String>
     private lateinit var triggerSelections: List<String>
     private lateinit var triggers: HashMap<String, String>
@@ -33,7 +34,6 @@ class SymbolDetail  : AppCompatActivity(){
         triggers = intent.getSerializableExtra("trigger") as HashMap<String, String>
         steps = intent.getSerializableExtra("steps") as HashMap<String, String>
         var video = intent.getStringExtra("video")
-
         triggerSelections = triggers.keys.toList()
 
         //initialize labels
@@ -41,33 +41,26 @@ class SymbolDetail  : AppCompatActivity(){
         val triggerSpinner: Spinner = findViewById(R.id.triggerSpinner)
         val lblTriggerDesc = findViewById<TextView>(R.id.trigger_desc)
         val lblSolution = findViewById<TextView>(R.id.solution)
-//        val lblVideo = findViewById<TextView>(R.id.video)
-
-
         val img = findViewById<ImageView>(R.id.img)
 
         // initialize spinner
         val triggerAdapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, triggerSelections)
         triggerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
         triggerSpinner.adapter = triggerAdapter
-
-
         val defaultTrigger: String = triggerSelections[0]
-
 
         //label for each symbol information
         Picasso.get().load(icon).into(img)
         lblDescription.text = description
         lblTriggerDesc.text = triggers[defaultTrigger]
         lblSolution.text = solution
-//        //lblSteps.text = steps
-//        lblVideo.text = video
 
         triggerSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Do nothing
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                //retrieve trigger selection and symbol description
                 var mapKey: String = triggerSelections[position]
                 var triggerDesc = triggers[mapKey]
                 val lblTriggerDesc = findViewById<TextView>(R.id.trigger_desc)
@@ -75,15 +68,14 @@ class SymbolDetail  : AppCompatActivity(){
             }
         }
 
-        //TESTING "LEARN HOW TO FIX" BUTTON
+        //how to fix button on click listener
         val mechanicBtn = findViewById<Button>(R.id.btn_fix)
         mechanicBtn.setOnClickListener{
+            //open steps activity
             var symbolFixIntent = Intent(this@SymbolDetail, SymbolFix::class.java)
             symbolFixIntent.putExtra("steps", steps)
             startActivity(symbolFixIntent)
         }
-        //TESTING "LEARN HOW TO FIX" BUTTON
-
     }
 
     //back button navigation
@@ -92,6 +84,4 @@ class SymbolDetail  : AppCompatActivity(){
         onBackPressed()
         return true
     }
-
-
 }

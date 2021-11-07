@@ -15,6 +15,7 @@ import sheridan.jawedzak.autoedu.userProfile.LoginActivity
 
 class ProfileFragment : Fragment(), OnSymbolClickListener {
 
+    //get data info from firebase
     lateinit var auth: FirebaseAuth
     var databaseReference: DatabaseReference? = null
     var database: FirebaseDatabase? = null
@@ -22,9 +23,9 @@ class ProfileFragment : Fragment(), OnSymbolClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //get firebase data
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-        //databaseReference = database?.reference!!.child("Profile")
         databaseReference = database?.getReference("Profile")
 
         //retrieve data
@@ -41,33 +42,38 @@ class ProfileFragment : Fragment(), OnSymbolClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //log out button
         btnlogout.setOnClickListener {
             auth.signOut()
+            //user logs out and goes back to login activity
             val myIntent = Intent(activity, LoginActivity::class.java)
+            //open activity
             startActivity(myIntent)
         }
     }
 
     private fun loadProfile() {
 
+        //get current user info from database
         val user = auth.currentUser
         val userreference = databaseReference?.child(user?.uid!!)
 
         userreference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
+                //get user's first and last nice
                 lblName.text = snapshot.child("firstname").value.toString() + ", " + snapshot.child("lastname").value.toString()
+                //get user;s email
                 lblEmail.text = user?.email
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
         })
     }
 
     override fun onSymbolItemClicked(position: Int) {
-        TODO("Not yet implemented")
     }
 
 }

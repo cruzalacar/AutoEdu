@@ -31,26 +31,33 @@ class FeedbackFragment : Fragment(), OnSymbolClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //submit button listener and error checking for missing input
         btn_submit.setOnClickListener{
 
+            //empty input - tell user to enter name
             if (TextUtils.isEmpty(name.text.toString())){
                 name.setError("Please enter your name")
                 return@setOnClickListener
             }
+            //empty input - tell user to enter email
             else if (TextUtils.isEmpty(email.text.toString())){
                 email.setError("Please enter your email")
                 return@setOnClickListener
             }
+            //empty input - tell user to enter feedback
             else if (TextUtils.isEmpty(feedback.text.toString())) {
                 feedback.setError("Please enter your feedback!")
                 return@setOnClickListener
             }
+            //empty input - tell user text should be minimum 10 letters long
             else if (feedback.text.toString().length < 10){
                 feedback.setError("minimum 10 letters required!")
                 return@setOnClickListener
             }
             else {
+                //retrieve strings/user info from database
                 reference = FirebaseDatabase.getInstance().getReference("Users")
+                //get user's name, email, and feedback
                 val User = UserFeedback(name.text.toString(), email.text.toString(), feedback.text.toString())
                 reference.child(name.text.toString()).setValue(User).addOnSuccessListener {
 
@@ -64,18 +71,21 @@ class FeedbackFragment : Fragment(), OnSymbolClickListener {
                             activity,
                             "Submitted",
                             Toast.LENGTH_SHORT
-                    ).show()
+                    ).show() //show toast message
+
+                    //error message and could not submit
                 }.addOnFailureListener{
                     Toast.makeText(
                             activity,
                             "could not submit",
                             Toast.LENGTH_SHORT
-                    ).show()
+                    ).show() //show toast message
                 }
             }
         }
     }
 
+    //symbol clicked
     override fun onSymbolItemClicked(position: Int) {
     }
 }
