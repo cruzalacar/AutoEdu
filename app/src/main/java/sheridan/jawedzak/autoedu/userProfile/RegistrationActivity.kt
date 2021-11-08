@@ -37,21 +37,25 @@ class RegistrationActivity : AppCompatActivity() {
             //empty info - tell user input first name
             if(TextUtils.isEmpty(firstnameInput.text.toString())) {
                 firstnameInput.setError("Please enter first name ")
+                firstnameInput.requestFocus()
                 return@setOnClickListener
 
             //empty info - tell user to input last name
             } else if(TextUtils.isEmpty(lastnameInput.text.toString())) {
-                firstnameInput.setError("Please enter last name ")
+                lastnameInput.setError("Please enter last name ")
+                lastnameInput.requestFocus()
                 return@setOnClickListener
 
             //empty info - tell user to input email
             }else if(TextUtils.isEmpty(emailInput.text.toString())) {
-                firstnameInput.setError("Please enter email ")
+                emailInput.setError("Please enter email ")
+                emailInput.requestFocus()
                 return@setOnClickListener
 
             //empty info - tell user to input password
             }else if(TextUtils.isEmpty(passwordInput.text.toString())) {
-                firstnameInput.setError("Please enter password ")
+                passwordInput.setError("Please enter password ")
+                passwordInput.requestFocus()
                 return@setOnClickListener
 
             }else {

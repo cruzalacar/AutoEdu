@@ -41,11 +41,13 @@ class LoginActivity : AppCompatActivity() {
             //empty info - tell user to enter email
             if(TextUtils.isEmpty(emailInput.text.toString())){
                 emailInput.setError("Please enter email")
+                emailInput.requestFocus()
                 return@setOnClickListener
             }
             //empty info - tell user to enter password
             else if(TextUtils.isEmpty(passwordInput.text.toString())){
-                emailInput.setError("Please enter password")
+                passwordInput.setError("Please enter password")
+                passwordInput.requestFocus()
                 return@setOnClickListener
             }
 
