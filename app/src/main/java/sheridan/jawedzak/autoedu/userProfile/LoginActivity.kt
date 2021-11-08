@@ -72,5 +72,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, RegistrationActivity::class.java))
 
         }
+
+        //Forgot/reset password for exisiting account
+        forgotPswdText.setOnClickListener{
+            //go to registration page for user to sign up
+            startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
+
+        }
     }
 }

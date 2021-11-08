@@ -79,5 +79,18 @@
         android:textStyle="bold"
         />
 
+    <TextView android:id="@+id/forgotPswdText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerText"
+        android:layout_margin="10dp"
+        android:text="Forgot Password? Reset here!"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
