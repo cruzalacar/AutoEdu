@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.activity_registration.emailInput
 import kotlinx.android.synthetic.main.fragment_feedback.*
 import sheridan.jawedzak.autoedu.R
-
+import androidx.core.view.isVisible
 
 class ForgotPasswordActivity : AppCompatActivity() {
 
@@ -50,6 +50,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 emailInput.requestFocus()
             }
             else {
+                progressBar1.isVisible = true
+                //call auth
                 auth.sendPasswordResetEmail(emailInput.text.toString())
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {

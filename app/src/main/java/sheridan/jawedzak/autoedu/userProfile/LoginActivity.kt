@@ -5,8 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.emailInput
+import kotlinx.android.synthetic.main.activity_login.passwordInput
+import kotlinx.android.synthetic.main.activity_login.progressBar
+import kotlinx.android.synthetic.main.activity_registration.*
 import sheridan.jawedzak.autoedu.MainActivity
 import sheridan.jawedzak.autoedu.R
 
@@ -39,33 +44,44 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
 
             //empty info - tell user to enter email
-            if(TextUtils.isEmpty(emailInput.text.toString())){
+            if (TextUtils.isEmpty(emailInput.text.toString())) {
                 emailInput.setError("Please enter email")
                 emailInput.requestFocus()
                 return@setOnClickListener
             }
             //empty info - tell user to enter password
-            else if(TextUtils.isEmpty(passwordInput.text.toString())){
+            else if (TextUtils.isEmpty(passwordInput.text.toString())) {
                 passwordInput.setError("Please enter password")
                 passwordInput.requestFocus()
                 return@setOnClickListener
-            }
+            } else if (passwordInput.length() > 6) {
+                passwordInput.setError("Mininmum password length is 6 characters")
+                passwordInput.requestFocus()
+            } else {
+                progressBar.isVisible = true
+                //firebase login info authentication - get user sign in, email, password approved
+                auth.signInWithEmailAndPassword(
+                    emailInput.text.toString(),
+                    passwordInput.text.toString()
+                )
+                    .addOnCompleteListener {
+                        //user login success
+                        if (it.isSuccessful) {
+                            //go to home page
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finish()
 
-            //firebase login info authentication - get user sign in, email, password approved
-            auth.signInWithEmailAndPassword(emailInput.text.toString(), passwordInput.text.toString())
-                .addOnCompleteListener {
-                    //user login success
-                    if(it.isSuccessful) {
-                        //go to home page
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
-
-                    //user login unsuccessful
-                    } else {
-                        //stay in login page and tell user to try again
-                        Toast.makeText(this@LoginActivity, "Login failed, please try again! ", Toast.LENGTH_LONG).show()
+                            //user login unsuccessful
+                        } else {
+                            //stay in login page and tell user to try again
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Login failed, please try again! ",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                }
+            }
         }
 
         //user registration button/create account
