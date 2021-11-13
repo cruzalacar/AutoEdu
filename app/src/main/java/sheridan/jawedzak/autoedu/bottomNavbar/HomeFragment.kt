@@ -1,6 +1,7 @@
 package sheridan.jawedzak.autoedu.bottomNavbar
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,7 +30,9 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-            //initialize database and symbols
+        getActivity()?.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //initialize database and symbols
             database = FirebaseDatabase.getInstance()
             reference = database.getReference("Symbols")
 
