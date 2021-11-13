@@ -6,6 +6,14 @@
     android:orientation="vertical"
     tools:context=".bottomNavbar.FeedbackFragment">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/autoedu"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"/>
+
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
@@ -25,7 +33,7 @@
     <EditText
         android:id="@+id/feedback"
         android:layout_width="match_parent"
-        android:layout_height="174dp"
+        android:layout_height="160dp"
         android:gravity="top"
         android:hint="Enter feedback" />
 
