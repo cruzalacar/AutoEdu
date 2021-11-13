@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoEDU">
         <!-- Splash screen -->
-        <activity android:name=".splashscreen.SplashScreenActivity">
+        <activity android:name=".splashscreen.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
