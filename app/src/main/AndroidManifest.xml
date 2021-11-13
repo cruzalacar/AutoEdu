@@ -26,9 +26,13 @@
         <activity android:name=".CameraActivity" />
         <activity android:name=".dashLightSymbols.SymbolDetail" />
         <activity android:name=".dashLightSymbols.SymbolFix" />
-        <activity android:name=".userProfile.LoginActivity" />
-        <activity android:name=".userProfile.RegistrationActivity" />
-        <activity android:name=".userProfile.ForgotPasswordActivity" />
+
+        <activity android:name=".userProfile.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".userProfile.RegistrationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".userProfile.ForgotPasswordActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"></activity>
     </application>
 
