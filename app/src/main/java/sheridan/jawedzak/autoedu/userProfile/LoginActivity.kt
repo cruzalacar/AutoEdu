@@ -1,10 +1,10 @@
 package sheridan.jawedzak.autoedu.userProfile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
@@ -97,5 +97,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
 
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }
