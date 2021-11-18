@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.emailInput
 import kotlinx.android.synthetic.main.activity_login.passwordInput
@@ -19,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
     //get firebase authentication
     lateinit var auth: FirebaseAuth
+    lateinit var firebaseUser: FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,18 +69,33 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         //user login success
                         if (it.isSuccessful) {
-                            //go to home page
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            finish()
+                            val user = auth.currentUser
 
+                            if (user != null) {
+                                if (user.isEmailVerified){
+                                    //go to home page
+                                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                    finish()
+                                }
+                                else {
+                                    user.sendEmailVerification()
+                                    Toast.makeText(
+                                        this@LoginActivity,
+                                        "Check your email to verify your account!",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    progressBar.isVisible = false
+                                }
+                            }
                             //user login unsuccessful
                         } else {
                             //stay in login page and tell user to try again
                             Toast.makeText(
                                 this@LoginActivity,
-                                "Login failed, please try again! ",
+                                "Login failed, please try again!",
                                 Toast.LENGTH_LONG
                             ).show()
+                            progressBar.isVisible = false
                         }
                     }
             }
