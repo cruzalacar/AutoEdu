@@ -4,7 +4,7 @@
     <!-- Adding Camera, Write External Storage Permission -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,25 +13,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoEDU">
-
         <!-- Splash screen -->
-        <activity android:name=".splashscreen.SplashScreenActivity">
+        <activity android:name=".splashscreen.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TutorialActivity" />
+        <activity android:name=".MechanicActivity" />
+        <activity android:name=".CameraActivity" />
+        <activity android:name=".dashLightSymbols.SymbolDetail" />
+        <activity android:name=".dashLightSymbols.SymbolFix" />
 
-        <activity android:name=".TutorialActivity"></activity>
-        <activity android:name=".MechanicActivity"></activity>
-        <activity android:name=".CameraActivity"></activity>
-        <activity android:name=".dashLightSymbols.SymbolDetail"></activity>
-        <activity android:name=".dashLightSymbols.SymbolFix"></activity>
-        <activity android:name=".userProfile.LoginActivity"></activity>
-        <activity android:name=".userProfile.RegistrationActivity"></activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".userProfile.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".userProfile.RegistrationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".userProfile.ForgotPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

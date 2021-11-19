@@ -23,20 +23,19 @@ class SymbolFix  : AppCompatActivity(){
         var name = intent.getStringExtra("name")
         var trigger = intent.getStringExtra("trigger")
         var solution = intent.getStringExtra("solution")
-        var steps = intent.getSerializableExtra("steps") as HashMap<String, String>
-//        var steps = intent.get
 
+        //count number of steps
+        var steps = intent.getSerializableExtra("steps") as HashMap<String, String>
         var stepsString: String = ""
         var stepNumber: Int = 1
 
+        //retrieve number of steps for each symbol
         for ((k, v) in steps.toSortedMap()) {
             stepsString += "Step ${stepNumber}. ${v}\n\n"
             stepNumber++
         }
-
-
+        //label solution
         val lblSolution = findViewById<TextView>(R.id.solution)
-
         //label for each symbol information
         lblSolution.text = stepsString
     }

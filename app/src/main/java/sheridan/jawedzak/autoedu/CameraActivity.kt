@@ -59,6 +59,7 @@ class CameraActivity : AppCompatActivity() {
         seatbelt_button = findViewById(R.id.seatbelt_btn)
         result_text = findViewById(R.id.label_text)
 
+
         //label assets
 //        val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
 
@@ -71,32 +72,6 @@ class CameraActivity : AppCompatActivity() {
             //retrieve result to next page
             startActivityForResult(intent, 100)
         })
-
-        val conditions = CustomModelDownloadConditions.Builder()
-            .requireWifi()  // Also possible: .requireCharging() and .requireDeviceIdle()
-            .build()
-
-        var test = FirebaseModelDownloader.getInstance()
-            .getModel("dashsymbol_model", DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND,
-                conditions)
-            .addOnSuccessListener { model: CustomModel? ->
-                // Download complete. Depending on your app, you could enable the ML
-                // feature, or switch from the local model to the remote model, etc.
-                print("hit")
-
-                // The CustomModel object contains the local path of the model file,
-                // which you can use to instantiate a TensorFlow Lite interpreter.
-                val modelFile = model?.file
-                if (modelFile != null) {
-                    interpreter = Interpreter(modelFile)
-                }
-            }
-
-//        seatbelt_button.setOnClickListener {
-//            var intent = Intent(this@CameraActivity, SeatBeltActivity::class.java)
-//
-//            startActivity(intent)
-//        }
 
         //scan image method
         make_prediction.setOnClickListener(View.OnClickListener {
@@ -174,12 +149,7 @@ class CameraActivity : AppCompatActivity() {
 //            var max = getMax(outputFeature0.floatArray)
 //            text_view.setText(labels[max])
 
-
-
-
             // Releases model resources if no longer used.
-//            model.close()
-
 
         })
     }

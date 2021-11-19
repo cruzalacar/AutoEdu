@@ -8,11 +8,8 @@ class DatabaseModel {
     var solution: String = ""
     var icon: String = ""
     var steps: HashMap<String, Any?> = hashMapOf()
-    //var video: String = ""
-
 
     constructor(){
-
     }
 
     //retrieve symbol list
@@ -23,8 +20,6 @@ class DatabaseModel {
         this.description = description
         this.solution = solution
         this.icon = icon
-//        this.tools = tools
         this.steps = steps
-//        this.video = video
     }
 }

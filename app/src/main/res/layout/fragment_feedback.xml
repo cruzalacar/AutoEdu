@@ -3,9 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".bottomNavbar.FeedbackFragment">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/autoedu"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"/>
 
     <EditText
         android:id="@+id/name"
@@ -13,20 +20,22 @@
         android:layout_height="66dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Enter name..." />
+        android:hint="Enter name" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:hint="Enter emaill..." />
+        android:layout_height="66dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="Enter email" />
 
     <EditText
         android:id="@+id/feedback"
         android:layout_width="match_parent"
-        android:layout_height="174dp"
+        android:layout_height="160dp"
         android:gravity="top"
-        android:hint="Enter feedback..." />
+        android:hint="Enter feedback" />
 
     <Button
         android:id="@+id/btn_submit"
