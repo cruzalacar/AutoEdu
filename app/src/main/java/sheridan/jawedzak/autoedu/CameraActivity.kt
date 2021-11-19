@@ -2,6 +2,7 @@ package sheridan.jawedzak.autoedu
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,14 +13,24 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.ml.modeldownloader.CustomModel
+import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
+import com.google.firebase.ml.modeldownloader.DownloadType
+import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
 import kotlinx.android.synthetic.main.fragment_search.*
 
 import org.tensorflow.lite.DataType
+import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
 import sheridan.jawedzak.autoedu.ml.MobilenetV110224Quant
 import sheridan.jawedzak.autoedu.ml.SymbolModel
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 class CameraActivity : AppCompatActivity() {
 
@@ -30,8 +41,10 @@ class CameraActivity : AppCompatActivity() {
     lateinit var make_prediction : Button
     lateinit var img_view : ImageView
     lateinit var text_view : TextView
+    lateinit var result_text: TextView
     lateinit var bitmap: Bitmap
     lateinit var seatbelt_button : Button
+    lateinit var interpreter: Interpreter
     private lateinit var reference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,20 +57,10 @@ class CameraActivity : AppCompatActivity() {
         img_view = findViewById(R.id.imageView2)
         text_view = findViewById(R.id.textView)
         seatbelt_button = findViewById(R.id.seatbelt_btn)
-
-        //download tf model
-//        val conditions = CustomModelDownloadConditions.Builder().requireWifi().build()
-
-//        // The CustomModel object contains the local path of the model file
-//        FirebaseModelDownloader.getInstance().getModel("dashsymbol_model", DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND, conditions).addOnSuccessListener {
-//            model: CustomModel? -> val modelFile = model?.file
-//                    if (modelFile != null) {
-//                        interpreter = Interpreter(modelFile)
-//                    }
-//                }
+        result_text = findViewById(R.id.label_text)
 
         //label assets
-        val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
+//        val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
 
         //select image button handler
         select_image_button.setOnClickListener(View.OnClickListener {
@@ -69,6 +72,26 @@ class CameraActivity : AppCompatActivity() {
             startActivityForResult(intent, 100)
         })
 
+        val conditions = CustomModelDownloadConditions.Builder()
+            .requireWifi()  // Also possible: .requireCharging() and .requireDeviceIdle()
+            .build()
+
+        var test = FirebaseModelDownloader.getInstance()
+            .getModel("dashsymbol_model", DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND,
+                conditions)
+            .addOnSuccessListener { model: CustomModel? ->
+                // Download complete. Depending on your app, you could enable the ML
+                // feature, or switch from the local model to the remote model, etc.
+                print("hit")
+
+                // The CustomModel object contains the local path of the model file,
+                // which you can use to instantiate a TensorFlow Lite interpreter.
+                val modelFile = model?.file
+                if (modelFile != null) {
+                    interpreter = Interpreter(modelFile)
+                }
+            }
+
 //        seatbelt_button.setOnClickListener {
 //            var intent = Intent(this@CameraActivity, SeatBeltActivity::class.java)
 //
@@ -77,29 +100,85 @@ class CameraActivity : AppCompatActivity() {
 
         //scan image method
         make_prediction.setOnClickListener(View.OnClickListener {
-            var resized = Bitmap.createScaledBitmap(bitmap, 180, 180, true)
-//            var model = MobilenetV110224Quant.newInstance(this)
-            var model = SymbolModel.newInstance(this)
-            var tbuffer = TensorImage.fromBitmap(resized)
-            var byteBuffer = tbuffer.buffer
+            //download tf model
 
-            // Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 180, 180, 3), DataType.UINT8)
-            inputFeature0.loadBuffer(byteBuffer)
 
-            // Runs model inference and gets result.
-            val outputs = model.process(inputFeature0)
-            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+            var resizedBitmap = Bitmap.createScaledBitmap(bitmap, 180, 180, true)
+            val input = ByteBuffer.allocateDirect(180*180*3*4).order(ByteOrder.nativeOrder())
+            for (y in 0 until 180) {
+                for (x in 0 until 180) {
+                    val px = resizedBitmap.getPixel(x, y)
 
-            //label image
-            var max = getMax(outputFeature0.floatArray)
-            text_view.setText(labels[max])
+                    // Get channel values from the pixel value.
+                    val r = Color.red(px)
+                    val g = Color.green(px)
+                    val b = Color.blue(px)
+
+                    // Normalize channel values to [-1.0, 1.0]. This requirement depends on the model.
+                    // For example, some models might require values to be normalized to the range
+                    // [0.0, 1.0] instead.
+                    val rf = (r - 127) / 255f
+                    val gf = (g - 127) / 255f
+                    val bf = (b - 127) / 255f
+
+                    input.putFloat(rf)
+                    input.putFloat(gf)
+                    input.putFloat(bf)
+                }
+            }
+            val bufferSize = 19 * java.lang.Float.SIZE / java.lang.Byte.SIZE
+            val modelOutput = ByteBuffer.allocateDirect(bufferSize).order(ByteOrder.nativeOrder())
+            interpreter?.run(input, modelOutput)
+
+            var labelTxt: String = ""
+            var confidence: Float = 0.0F
+
+            modelOutput.rewind()
+            val probabilities = modelOutput.asFloatBuffer()
+            try {
+                val reader = BufferedReader(
+                    InputStreamReader(assets.open("labels.txt"))
+                )
+                        for (i in 0 until (probabilities.capacity() - 1)) {
+                            val label: String = reader.readLine()
+                            val probability = probabilities.get(i)
+                            println("$label: $probability")
+
+                            if (probability > confidence) {
+                                labelTxt = label
+                                confidence = probability
+                            }
+                        }
+            } catch (e: IOException) {
+                // File not found?
+            }
+
+            result_text.text = "${labelTxt} with a confidence of ${confidence}"
+
+
+
+////            var model = MobilenetV110224Quant.newInstance(this)
+//            var model = SymbolModel.newInstance(this)
+//            var tbuffer = TensorImage.fromBitmap(resized)
+//            var byteBuffer = tbuffer.buffer
+//
+//            // Creates inputs for reference.
+//            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 180, 180, 3), DataType.UINT8)
+//            inputFeature0.loadBuffer(byteBuffer)
+//
+//            // Runs model inference and gets result.
+//            val outputs = model.process(inputFeature0)
+//            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+//
+//            //label image
+//            var max = getMax(outputFeature0.floatArray)
+//            text_view.setText(labels[max])
 
 
 
 
             // Releases model resources if no longer used.
-            model.close()
+//            model.close()
 
 
         })

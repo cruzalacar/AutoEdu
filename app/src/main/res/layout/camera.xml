@@ -45,7 +45,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="221dp"
-        android:layout_height="141dp"
+        android:layout_height="71dp"
         android:text="1. Select symbol first
         2. Press scan image button"
         android:textColor="#100F0F"
@@ -61,5 +61,11 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Seatbelt" />
+
+    <TextView
+        android:id="@+id/label_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 </LinearLayout>
