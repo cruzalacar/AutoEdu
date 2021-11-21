@@ -1,19 +1,19 @@
-airbag_deactivated
-airbag_indicator
-antilock_brake
-battery_charge
-brake_fluid
-door_ajar
-engine_temperature
-engine_warning
-exhaust_fluid
-fuel_filter
-glow_plug
-low_fuel
-oil_pressure
-seat_belt
-security_alert
-tire_pressure
-traction_control
-traction_control_malfunction
-washer_fluid
+Airbag Deactivated
+Airbag Indicator
+Antilock Brake System (ABS)
+Battery Charge Light
+Brake Fluid
+Door Ajar Light
+Engine Temperature Warning
+Check Engine Light
+Diesel Exhaust Fluid
+Fuel Filter
+Glow Plug Indicator
+Low Fuel Warning
+Oil Pressure
+Seatbelt Warning
+Security Alert
+Tire Pressure
+Traction Control
+Traction Control Malfunction
+Washer Fluid

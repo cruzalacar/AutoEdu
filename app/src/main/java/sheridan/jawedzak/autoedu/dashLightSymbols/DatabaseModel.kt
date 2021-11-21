@@ -8,18 +8,20 @@ class DatabaseModel {
     var solution: String = ""
     var icon: String = ""
     var steps: HashMap<String, Any?> = hashMapOf()
+    var common: Boolean = false
 
     constructor(){
     }
 
     //retrieve symbol list
     constructor(name: String, trigger: HashMap<String, Any?>, description: String, solution: String, icon: String,
-                steps: HashMap<String, Any?>){
+                steps: HashMap<String, Any?>, common: Boolean){
         this.name = name
         this.trigger = trigger
         this.description = description
         this.solution = solution
         this.icon = icon
         this.steps = steps
+        this.common = common
     }
 }

@@ -26,6 +26,8 @@ class SymbolDetail  : AppCompatActivity(){
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
+
+
         //symbol information
         var name = intent.getStringExtra("name")
         var icon = intent.getStringExtra("icon")
@@ -73,6 +75,7 @@ class SymbolDetail  : AppCompatActivity(){
         mechanicBtn.setOnClickListener{
             //open steps activity
             var symbolFixIntent = Intent(this@SymbolDetail, SymbolFix::class.java)
+            symbolFixIntent.putExtra("name", name)
             symbolFixIntent.putExtra("steps", steps)
             startActivity(symbolFixIntent)
         }

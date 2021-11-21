@@ -88,4 +88,8 @@ class FeedbackFragment : Fragment(), OnSymbolClickListener {
     //symbol clicked
     override fun onSymbolItemClicked(position: Int) {
     }
+
+    override fun onShowTutorial(position: Int) {
+        TODO("Not yet implemented")
+    }
 }

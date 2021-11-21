@@ -1,9 +1,13 @@
 package sheridan.jawedzak.autoedu
 
+import android.Manifest
+import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,6 +16,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ml.modeldownloader.CustomModel
 import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
@@ -21,7 +27,9 @@ import kotlinx.android.synthetic.main.fragment_search.*
 
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
+import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import sheridan.jawedzak.autoedu.dashLightSymbols.DatabaseModel
 import sheridan.jawedzak.autoedu.ml.MobilenetV110224Quant
@@ -47,9 +55,32 @@ class CameraActivity : AppCompatActivity() {
     lateinit var interpreter: Interpreter
     private lateinit var reference: DatabaseReference
 
+    val CAMERA_REQUEST_CODE = 100
+    val GALLERY_REQUEST_CODE = 101
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.camera)
+
+        val conditions = CustomModelDownloadConditions.Builder()
+                .requireWifi()  // Also possible: .requireCharging() and .requireDeviceIdle()
+                .build()
+
+        FirebaseModelDownloader.getInstance()
+                .getModel("dashsymbol_model", DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND,
+                        conditions)
+                .addOnSuccessListener { model: CustomModel? ->
+                    // Download complete. Depending on your app, you could enable the ML
+                    // feature, or switch from the local model to the remote model, etc.
+                    print("hit")
+
+                    // The CustomModel object contains the local path of the model file,
+                    // which you can use to instantiate a TensorFlow Lite interpreter.
+                    val modelFile = model?.file
+                    if (modelFile != null) {
+                        interpreter = Interpreter(modelFile)
+                    }
+                }
 
         //initialize buttons
         select_image_button = findViewById(R.id.button)
@@ -64,94 +95,53 @@ class CameraActivity : AppCompatActivity() {
 //        val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
 
         //select image button handler
-        select_image_button.setOnClickListener(View.OnClickListener {
-            Log.d("mssg", "button pressed")
-            var intent : Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
+//        select_image_button.setOnClickListener(View.OnClickListener {
+//            showCameraDialog()
+//        })
 
-            //retrieve result to next page
-            startActivityForResult(intent, 100)
-        })
 
         //scan image method
         make_prediction.setOnClickListener(View.OnClickListener {
-            //download tf model
+            val imageProcessor = ImageProcessor.Builder()
+                    .add(ResizeOp(180, 180, ResizeOp.ResizeMethod.BILINEAR)) //.add(new NormalizeOp(127.5f, 127.5f))
+                    .build()
 
+            var tImage = TensorImage(DataType.FLOAT32)
 
-            var resizedBitmap = Bitmap.createScaledBitmap(bitmap, 180, 180, true)
-            val input = ByteBuffer.allocateDirect(180*180*3*4).order(ByteOrder.nativeOrder())
-            for (y in 0 until 180) {
-                for (x in 0 until 180) {
-                    val px = resizedBitmap.getPixel(x, y)
+            tImage.load(bitmap)
+            tImage = imageProcessor.process(tImage)
 
-                    // Get channel values from the pixel value.
-                    val r = Color.red(px)
-                    val g = Color.green(px)
-                    val b = Color.blue(px)
+            val probabilityBuffer = TensorBuffer.createFixedSize(intArrayOf(1, 19), DataType.FLOAT32)
+            interpreter.run(tImage.buffer, probabilityBuffer.buffer)
 
-                    // Normalize channel values to [-1.0, 1.0]. This requirement depends on the model.
-                    // For example, some models might require values to be normalized to the range
-                    // [0.0, 1.0] instead.
-                    val rf = (r - 127) / 255f
-                    val gf = (g - 127) / 255f
-                    val bf = (b - 127) / 255f
+            Log.i("RESULT", probabilityBuffer.floatArray.contentToString())
 
-                    input.putFloat(rf)
-                    input.putFloat(gf)
-                    input.putFloat(bf)
+            var highestIndex = 0
+            val bufferArray = probabilityBuffer.floatArray
+
+            for (i in 0..bufferArray.size - 1){
+                if (bufferArray[i] > bufferArray[highestIndex]){
+                    highestIndex = i
                 }
             }
-            val bufferSize = 19 * java.lang.Float.SIZE / java.lang.Byte.SIZE
-            val modelOutput = ByteBuffer.allocateDirect(bufferSize).order(ByteOrder.nativeOrder())
-            interpreter?.run(input, modelOutput)
 
-            var labelTxt: String = ""
-            var confidence: Float = 0.0F
+            var iconLabel: String = ""
 
-            modelOutput.rewind()
-            val probabilities = modelOutput.asFloatBuffer()
-            try {
-                val reader = BufferedReader(
-                    InputStreamReader(assets.open("labels.txt"))
-                )
-                        for (i in 0 until (probabilities.capacity() - 1)) {
-                            val label: String = reader.readLine()
-                            val probability = probabilities.get(i)
-                            println("$label: $probability")
+            val reader = BufferedReader(InputStreamReader(assets.open("labels.txt")))
+            for (i in 0..highestIndex) {
+                iconLabel = reader.readLine()
 
-                            if (probability > confidence) {
-                                labelTxt = label
-                                confidence = probability
-                            }
-                        }
-            } catch (e: IOException) {
-                // File not found?
             }
+            val resText = "Image identified as ${iconLabel}"
+            result_text.text = resText
 
-            result_text.text = "${labelTxt} with a confidence of ${confidence}"
 
 
 
-////            var model = MobilenetV110224Quant.newInstance(this)
-//            var model = SymbolModel.newInstance(this)
-//            var tbuffer = TensorImage.fromBitmap(resized)
-//            var byteBuffer = tbuffer.buffer
-//
-//            // Creates inputs for reference.
-//            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 180, 180, 3), DataType.UINT8)
-//            inputFeature0.loadBuffer(byteBuffer)
-//
-//            // Runs model inference and gets result.
-//            val outputs = model.process(inputFeature0)
-//            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-//
-//            //label image
-//            var max = getMax(outputFeature0.floatArray)
-//            text_view.setText(labels[max])
 
-            // Releases model resources if no longer used.
 
         })
+        showCameraDialog()
     }
 
 
@@ -172,15 +162,51 @@ class CameraActivity : AppCompatActivity() {
         })
     }*/
 
+    private fun showCameraDialog(){
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.apply {
+            setTitle("Image Selection")
+            setMessage("Please select the method to select the image")
+            setPositiveButton("Camera"){ _, _ ->
+                val pictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                try {
+                    startActivityForResult(pictureIntent, CAMERA_REQUEST_CODE)
+                } catch(e: ActivityNotFoundException){
+                    Log.e("Exception", e.toString())
+                }
+                Log.d("nothing ","test")
+            }
+            setNegativeButton("Phone Gallery"){ _, _ ->
+                Log.d("mssg", "button pressed")
+                var intent : Intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
+
+                //retrieve result to next page
+                startActivityForResult(intent, GALLERY_REQUEST_CODE)
+            }
+            setNeutralButton("Cancel"){ _, _ ->
+
+            }
+        }.create().show()
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        //retrieve image from user
-        img_view.setImageURI(data?.data)
+        if (requestCode == CAMERA_REQUEST_CODE) {
+            img_view.setImageBitmap(data?.extras?.get("data") as Bitmap)
+            bitmap = data?.extras?.get("data") as Bitmap
 
-        //image media store
-        var uri : Uri ?= data?.data
-        bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+        } else {
+            //retrieve image from user
+            img_view.setImageURI(data?.data)
+
+            //image media store
+            var uri : Uri ?= data?.data
+            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+        }
+
     }
 
     //max input on camera functionality

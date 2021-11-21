@@ -76,4 +76,7 @@ class ProfileFragment : Fragment(), OnSymbolClickListener {
     override fun onSymbolItemClicked(position: Int) {
     }
 
+    override fun onShowTutorial(position: Int) {
+    }
+
 }

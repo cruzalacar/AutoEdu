@@ -13,7 +13,6 @@ class SymbolFix  : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.symbol_fix)
 
-        //action bar
         val actionbar = supportActionBar
         actionbar!!.title = intent.getStringExtra("name")
         actionbar.setDisplayHomeAsUpEnabled(true)

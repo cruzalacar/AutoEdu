@@ -61,6 +61,10 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
         startActivity(intent)
     }
 
+    override fun onShowTutorial(position: Int) {
+        TODO("Not yet implemented")
+    }
+
     //Search View filter
     private fun searchResult(query: String) {
         val q = query.toLowerCase()
