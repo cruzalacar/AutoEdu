@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="200dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:background="#E8E9EB"
         android:textAlignment="center"
         android:padding="10sp"
@@ -16,10 +16,25 @@
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
         android:layout_marginEnd="20dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp"></TextView>
+        android:paddingRight="5dp"
+        ></TextView>
+
+    <ImageView
+        android:id="@+id/img2"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#E8E9EB"
+        android:src="@drawable/ic_baseline_construction_24"
+        android:layout_marginEnd="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        />
 
 </LinearLayout>

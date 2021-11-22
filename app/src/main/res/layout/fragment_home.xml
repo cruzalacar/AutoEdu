@@ -54,7 +54,7 @@
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:layout_height="100dp"
+        android:layout_height="match_parent"
 
         tools:listitem="@layout/tutorial_layout_home" />
 
