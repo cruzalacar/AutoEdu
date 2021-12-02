@@ -9,13 +9,14 @@ class DatabaseModel {
     var icon: String = ""
     var steps: HashMap<String, Any?> = hashMapOf()
     var common: Boolean = false
+    var video: String = ""
 
     constructor(){
     }
 
     //retrieve symbol list
     constructor(name: String, trigger: HashMap<String, Any?>, description: String, solution: String, icon: String,
-                steps: HashMap<String, Any?>, common: Boolean){
+                steps: HashMap<String, Any?>, common: Boolean, video: String){
         this.name = name
         this.trigger = trigger
         this.description = description
@@ -23,5 +24,6 @@ class DatabaseModel {
         this.icon = icon
         this.steps = steps
         this.common = common
+        this.video = video
     }
 }

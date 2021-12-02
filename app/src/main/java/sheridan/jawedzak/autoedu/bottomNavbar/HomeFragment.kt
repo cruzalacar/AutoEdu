@@ -132,6 +132,7 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
         intent.putExtra("solution", filteredList[position].solution)
         intent.putExtra("icon", filteredList[position].icon)
         intent.putExtra("steps", filteredList[position].steps)
+        intent.putExtra("video", filteredList[position].video)
 
         //open activity
         startActivity(intent)
@@ -142,6 +143,7 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
         var intent = Intent(activity, SymbolFix::class.java)
         intent.putExtra("steps", symbol.steps)
         intent.putExtra("name", symbol.name)
+        intent.putExtra("video", symbol.video)
         startActivity(intent)
     }
 
@@ -258,6 +260,7 @@ class HomeFragment : Fragment(), OnSymbolClickListener {
             intent.putExtra("solution",list[itemIndex].solution)
             intent.putExtra("icon", list[itemIndex].icon)
             intent.putExtra("steps", list[itemIndex].steps)
+            intent.putExtra("video", list[itemIndex].video)
 
             startActivity(intent)
         } else {

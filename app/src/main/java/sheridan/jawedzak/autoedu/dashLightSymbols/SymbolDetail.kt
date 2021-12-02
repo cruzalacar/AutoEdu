@@ -77,6 +77,7 @@ class SymbolDetail  : AppCompatActivity(){
             var symbolFixIntent = Intent(this@SymbolDetail, SymbolFix::class.java)
             symbolFixIntent.putExtra("name", name)
             symbolFixIntent.putExtra("steps", steps)
+            symbolFixIntent.putExtra("video", video)
             startActivity(symbolFixIntent)
         }
     }

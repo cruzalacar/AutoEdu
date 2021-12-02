@@ -11,6 +11,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+
+        app:autoPlay="false"
+        app:showFullScreenButton="true"
+        android:id="@+id/symbol_video"/>
 
     <TextView
         android:id="@+id/textView7"

@@ -3,9 +3,11 @@ package sheridan.jawedzak.autoedu.dashLightSymbols
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import sheridan.jawedzak.autoedu.R
-import java.util.*
-import kotlin.collections.HashMap
+
 
 class SymbolFix  : AppCompatActivity(){
 
@@ -22,6 +24,23 @@ class SymbolFix  : AppCompatActivity(){
         var name = intent.getStringExtra("name")
         var trigger = intent.getStringExtra("trigger")
         var solution = intent.getStringExtra("solution")
+        var video = intent.getStringExtra("video")
+
+        //youtube video
+        val youTubePlayer = findViewById<YouTubePlayerView>(R.id.symbol_video)
+
+        lifecycle.addObserver(youTubePlayer)
+
+
+        youTubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                val videoId = video
+                if (videoId != null) {
+                    youTubePlayer.loadVideo(videoId, 0F)
+                }
+            }
+        })
+
 
         //count number of steps
         var steps = intent.getSerializableExtra("steps") as HashMap<String, String>

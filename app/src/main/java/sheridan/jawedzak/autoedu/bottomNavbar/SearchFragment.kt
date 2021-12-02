@@ -57,6 +57,7 @@ class SearchFragment : Fragment(), OnSymbolClickListener {
         intent.putExtra("solution", list[position].solution)
         intent.putExtra("icon", list[position].icon)
         intent.putExtra("steps", list[position].steps)
+        intent.putExtra("video", list[position].video)
         //open next activity
         startActivity(intent)
     }

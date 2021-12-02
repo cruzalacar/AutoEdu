@@ -102,8 +102,8 @@ dependencies {
     implementation 'org.tensorflow:tensorflow-lite:2.3.0'
 
 
-    //Youtube video
-    implementation files('libs\\YouTubeAndroidPlayerApi.jar')
+    //Android Youtube Player library
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
