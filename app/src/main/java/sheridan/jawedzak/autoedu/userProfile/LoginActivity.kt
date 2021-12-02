@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                 passwordInput.setError("Please enter password")
                 passwordInput.requestFocus()
                 return@setOnClickListener
-            } else if (passwordInput.length() > 6) {
+            } else if (passwordInput.length() < 6) {
                 passwordInput.setError("Mininmum password length is 6 characters")
                 passwordInput.requestFocus()
             } else {
