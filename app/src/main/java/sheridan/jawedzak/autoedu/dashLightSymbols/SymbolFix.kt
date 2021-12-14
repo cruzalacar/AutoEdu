@@ -1,11 +1,14 @@
 package sheridan.jawedzak.autoedu.dashLightSymbols
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import sheridan.jawedzak.autoedu.MapActivity
 import sheridan.jawedzak.autoedu.R
 
 
@@ -28,6 +31,7 @@ class SymbolFix  : AppCompatActivity(){
 
         //youtube video
         val youTubePlayer = findViewById<YouTubePlayerView>(R.id.symbol_video)
+        val mapBtn = findViewById<Button>(R.id.btn_map)
 
         lifecycle.addObserver(youTubePlayer)
 
@@ -40,6 +44,11 @@ class SymbolFix  : AppCompatActivity(){
                 }
             }
         })
+
+        mapBtn.setOnClickListener {
+            val mapIntent = Intent(this, MapActivity::class.java)
+            startActivity(mapIntent)
+        }
 
 
         //count number of steps

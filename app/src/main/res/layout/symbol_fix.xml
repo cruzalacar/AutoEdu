@@ -49,6 +49,13 @@
         tools:listitem="@layout/text_layout"
         android:background="#E8E9EB"/>
 
+        <Button
+            android:id="@+id/btn_map"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:text="Find A Mechanic"
+            android:backgroundTint="#4D9DE9"
+            android:layout_gravity="center" />
 
     </LinearLayout>
 </ScrollView>
